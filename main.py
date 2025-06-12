@@ -73,8 +73,14 @@ def place_order_with_tp_sl(order_side, entry_price, tp_perc=0.01, sl_perc=0.005)
 while True:
     try:
         df = get_ohlcv(session, symbol, interval, limit=1000)
+        df = df.sort_values('timestamp', ascending=False).reset_index(drop=True)
         df = get_rsi(df)
         df = get_bollinger(df)
+        print(df[['timestamp','close','rsi','bb_upper','bb_lower']].head(25))    # 상위 25개 행만
+
+        print(df.dtypes)
+        print(df.isnull().sum())
+        print("최신 봉:", df.iloc[0])
         
         # 최신가로 주문 수량 계산
         current_price = float(df['close'].iloc[0])

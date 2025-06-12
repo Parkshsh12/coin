@@ -26,7 +26,7 @@ def get_rsi(df, period=14):
 
 def get_bollinger(df, period=20, num_std=2):
     df['bb_ma'] = df['close'].rolling(window=period).mean()
-    df['bb_std'] = df['close'].rolling(window=period).std()
+    df['bb_std'] = df['close'].rolling(window=period).std(ddof=0)
     df['bb_upper'] = df['bb_ma'] + (df['bb_std'] * num_std)
     df['bb_lower'] = df['bb_ma'] - (df['bb_std'] * num_std)
     return df
