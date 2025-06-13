@@ -13,7 +13,7 @@ session = HTTP(
 
 # OHLCV 과거 데이터 충분히 받아오기 (예: 1000개)
 
-df = get_ohlcv(session, symbol="BTCUSDT", interval="5", limit=1000)
+df = get_ohlcv(session, symbol="BTCUSDT", interval="15", limit=1000)
 df = get_rsi(df, period=14)
 df = get_bollinger(df, period=20, num_std=2)
 
@@ -33,19 +33,19 @@ for i in range(20, len(df)-1):
     bb_lower = df['bb_lower'].iloc[i]
 
     # 롱 진입: 종가가 볼린저밴드 하단 이하 AND RSI 35 이하
-    if close <= bb_lower and rsi <= 35 and position is None:
+    if close <= bb_lower and position is None:
         position = "Long"
         entry_price = close
         tp = entry_price * 1.01      # 익절 1%
-        sl = entry_price * 0.995     # 손절 -0.5%
+        sl = entry_price * 0.999     # 손절 -0.5%
         print(f"[{df['timestamp'].iloc[i]}] 롱 진입! 진입가: {entry_price:.2f}, BB하단: {bb_lower:.2f}, RSI: {rsi:.2f}")
 
     # 숏 진입: 종가가 볼린저밴드 상단 이상 AND RSI 65 이상
-    elif close >= bb_upper and rsi >= 65 and position is None:
+    elif close >= bb_upper and position is None:
         position = "Short"
         entry_price = close
         tp = entry_price * 0.99      # 익절 -1%
-        sl = entry_price * 1.005     # 손절 +0.5%
+        sl = entry_price * 1.001     # 손절 +0.5%
         print(f"[{df['timestamp'].iloc[i]}] 숏 진입! 진입가: {entry_price:.2f}, BB상단: {bb_upper:.2f}, RSI: {rsi:.2f}")
 
     # 롱 포지션 청산

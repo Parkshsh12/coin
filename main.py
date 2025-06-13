@@ -2,7 +2,7 @@ import time
 import pandas as pd
 from pybit.unified_trading import HTTP
 
-from trading_utils import get_rsi, get_bollinger, get_ohlcv
+from trading_utils import get_bollinger, get_ohlcv
 
 symbol = "BTCUSDT"
 interval = "1"
@@ -18,7 +18,7 @@ session = HTTP(
 # 잔고 확인
 balance = session.get_wallet_balance(accountType="UNIFIED", coin="USDT")
 btc_info = balance['result']['list'][0]
-print("잔고 확인:", balance)
+print("잔고 확인:", balance['result']['list'][0]['coin'][0]['equity'])
 
 usdt_balance = float(balance['result']['list'][0]['totalEquity'])   # 또는 availableBalance
 
@@ -60,11 +60,12 @@ def place_order_with_tp_sl(order_side, entry_price, tp_perc=0.01, sl_perc=0.005)
         category="linear",
         symbol=symbol,
         side=order_side,
-        orderType="Market",
+        orderType="Limit",
+        price=str(entry_price),
         qty=str(qty),
-        takeProfit=take_profit,
-        stopLoss=stop_loss,
-        timeInForce="GoodTillCancel"
+        takeProfit=str(take_profit),
+        stopLoss=str(stop_loss),
+        timeInForce="GTC",
     )
     print("진입 주문결과:", order)
     return order
@@ -73,38 +74,33 @@ def place_order_with_tp_sl(order_side, entry_price, tp_perc=0.01, sl_perc=0.005)
 while True:
     try:
         df = get_ohlcv(session, symbol, interval, limit=1000)
-        df = df.sort_values('timestamp', ascending=False).reset_index(drop=True)
-        df = get_rsi(df)
         df = get_bollinger(df)
-        print(df[['timestamp','close','rsi','bb_upper','bb_lower']].head(25))    # 상위 25개 행만
-
-        print("최신 봉:", df.iloc[0])
+        print(df[['timestamp','close','bb_upper','bb_lower']].head(25))    # 상위 25개 행만
         
         # 최신가로 주문 수량 계산
         current_price = float(df['close'].iloc[0])
         qty = round(trade_amount / current_price, 3)  # 소수점 3자리(최소수량 확인!)
 
         close = df['close'].iloc[0]
-        rsi = df['rsi'].iloc[13]
         bb_upper = df['bb_upper'].iloc[19]
         bb_lower = df['bb_lower'].iloc[19]
 
         position_info = get_position_info()
         position_side = position_info['side'] if position_info else None
-        print(f"\n[{df['timestamp'].iloc[0]}] 현재가: {close:.2f}, RSI: {rsi:.2f}, BB상단: {bb_upper:.2f}, BB하단: {bb_lower:.2f}, 포지션: {position_side}")
+        print(f"\n[{df['timestamp'].iloc[0]}] 현재가: {close:.2f}, BB상단: {bb_upper:.2f}, BB하단: {bb_lower:.2f}, 포지션: {position_side}")
 
         # 롱 진입
-        if (position_side is None or position_side == "Sell") and close <= bb_lower and rsi <= 35:
+        if (position_side is None or position_side == "Sell") and close <= bb_lower:
             if position_side == "Sell":
                 close_position("Sell")
                 time.sleep(10)
             order = place_order_with_tp_sl("Buy", close, tp_perc=0.01, sl_perc=0.005)
 
         # 숏 진입
-        elif (position_side is None or position_side == "Buy") and close >= bb_upper and rsi >= 65:
+        elif (position_side is None or position_side == "Buy") and close >= bb_upper:
             if position_side == "Buy":
                 close_position("Buy")
-                time.sleep(1)
+                time.sleep(10)
             order = place_order_with_tp_sl("Sell", close, tp_perc=0.01, sl_perc=0.005)
 
         print("총 평가금액:", btc_info['totalEquity'])
