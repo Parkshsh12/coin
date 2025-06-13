@@ -78,8 +78,6 @@ while True:
         df = get_bollinger(df)
         print(df[['timestamp','close','rsi','bb_upper','bb_lower']].head(25))    # 상위 25개 행만
 
-        print(df.dtypes)
-        print(df.isnull().sum())
         print("최신 봉:", df.iloc[0])
         
         # 최신가로 주문 수량 계산
@@ -87,13 +85,12 @@ while True:
         qty = round(trade_amount / current_price, 3)  # 소수점 3자리(최소수량 확인!)
 
         close = df['close'].iloc[0]
-        rsi = df['rsi'].iloc[0]
-        bb_upper = df['bb_upper'].iloc[0]
-        bb_lower = df['bb_lower'].iloc[0]
+        rsi = df['rsi'].iloc[13]
+        bb_upper = df['bb_upper'].iloc[19]
+        bb_lower = df['bb_lower'].iloc[19]
 
         position_info = get_position_info()
         position_side = position_info['side'] if position_info else None
-        print(df)
         print(f"\n[{df['timestamp'].iloc[0]}] 현재가: {close:.2f}, RSI: {rsi:.2f}, BB상단: {bb_upper:.2f}, BB하단: {bb_lower:.2f}, 포지션: {position_side}")
 
         # 롱 진입
