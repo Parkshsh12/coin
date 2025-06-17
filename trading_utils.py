@@ -8,6 +8,7 @@ def get_ohlcv(session, symbol, interval, limit=100):
         interval=interval,
         limit=limit
     )
+    print(ohlcv)
     df = pd.DataFrame(ohlcv['result']['list'],
                       columns=['timestamp', 'open', 'high', 'low', 'close', 'volume', 'turnover'])
     df = df.astype({'open': float, 'high': float, 'low': float, 'close': float})
