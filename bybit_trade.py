@@ -85,12 +85,14 @@ async def place_order_with_tp_sl(order_side, tp_perc=0.011, sl_perc=0.005):
         stopLoss=str(stop_loss)
     )
     hold_amount = float(pos["size"])
+    side = "LONG" if pos["side"] == "Buy" else "SELL"
     await notify(
+        f"포지션진입\n"
         f"{str(datetime.datetime.now())}\n"
         f"[진입가]:{base_price}\n"
         f"[TP]:{take_profit}\n"
         f"[SL]:{stop_loss}\n"
-        f"[SIDE]:{pos["side"]}\n"
+        f"[SIDE]:{side}\n"
         f"[수량]:{pos["size"]}\n"
         
     )
@@ -137,7 +139,7 @@ async def bybit_private_ws():
                                 side = "SHORT" if side == "Buy" else "LONG"
                                 await notify(
                                     f"{str(datetime.datetime.now())}\n"
-                                    f"[[[[[[{size}포지션청산]]]]]]\n"
+                                    f"[[[[[[{side}포지션청산]]]]]]\n"
                                     f"[{symbol}][체결금액]: {price} USDT\n"
                                     f"[체결수량]: {size}"
                                 )
