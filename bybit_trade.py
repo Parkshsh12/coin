@@ -5,8 +5,10 @@ import time
 import json
 import hmac
 import telegram
+import os
 from telegram.request import HTTPXRequest
 from pybit.unified_trading import HTTP
+from dotenv import load_dotenv
 
 hold_amount = 0.0               # 보유한 개수
 target_hold_amount = 0.001      # 구매할 개수 
@@ -16,11 +18,13 @@ target_stop_loss_ratio = -0.01  # -1%
 trade_ended = False             # 트레이딩 종료 유무 판단
 last_notify_time = 0
 # Bybit API 키 정보 (본인 정보 입력)
-api_key = "uobPGl5Ol3lBSqztB8"
-api_secret = "SubtOb7Cwti2Bdan10gjNfkSe6ZZtbEhlcZL"
+load_dotenv()
 
-TELEGRAM_BOT_TOKEN = '8069042694:AAHjm7njb971ALxuFDg92Rm7arcJ0Bl5Mno'
-TELEGRAM_CHAT_ID = '1946099028'
+api_key = os.getenv("API_KEY")
+api_secret = os.getenv("API_SECRET")
+
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
 session = HTTP(
     testnet=True,
@@ -61,9 +65,11 @@ async def place_order_with_tp_sl(order_side, tp_perc=0.011, sl_perc=0.005):
     )
     print(f"진입 주문결과: {order["retMsg"]}, 주문번호: {order["result"]["orderId"]}")
     time.sleep(1)
+    #포지션 정보 가져오기
     positions = session.get_positions(category="linear", symbol="BTCUSDT")
     pos = positions['result']['list'][0]
-    base_price = float(pos['avgPrice'])  # 실체결가
+    # 실체결가
+    base_price = float(pos['avgPrice'])  
     # 진짜 체결가로 TP/SL 재계산
     if order_side == "Buy":
         take_profit = round(base_price * (1 + tp_perc), 2)
@@ -78,14 +84,18 @@ async def place_order_with_tp_sl(order_side, tp_perc=0.011, sl_perc=0.005):
         takeProfit=str(take_profit),
         stopLoss=str(stop_loss)
     )
+    hold_amount = float(pos["size"])
     await notify(
         f"{str(datetime.datetime.now())}\n"
         f"[진입가]:{base_price}\n"
         f"[TP]:{take_profit}\n"
-        f"[SL]:{stop_loss}"
+        f"[SL]:{stop_loss}\n"
+        f"[SIDE]:{pos["side"]}\n"
+        f"[수량]:{pos["size"]}\n"
+        
     )
     print(f"[진입가]:{base_price}, [TP]:{take_profit}, [SL]:{stop_loss}")
-    return order
+    return hold_amount
 
 def close_position(position_side):
     side = "Sell" if position_side == "Buy" else "Buy"
@@ -110,7 +120,7 @@ async def bybit_private_ws():
                     await ws_private.send(send_auth())  # () 붙여야 됨!
                     await ws_private.send(json.dumps({
                         "op": "subscribe",
-                        "args": ["execution"]
+                        "args": ["execution", "wallet"]
                     }))
 
                     while True:
@@ -124,15 +134,26 @@ async def bybit_private_ws():
                                 price = exec_data["execValue"]
                                 side = exec_data["side"]
                                 size = exec_data["closedSize"]
+                                side = "SHORT" if side == "Buy" else "LONG"
                                 await notify(
                                     f"{str(datetime.datetime.now())}\n"
+                                    f"[[[[[[{size}포지션청산]]]]]]\n"
                                     f"[{symbol}][체결금액]: {price} USDT\n"
-                                    f"[체결수량]: {size}\n"
-                                    f"{side}포지션 청산"
+                                    f"[체결수량]: {size}"
                                 )
                                 print(f"[{symbol}][체결금액]: {price} USDT, {side}포지션 청산")
-                        else:
-                            print(f"🔥 무시된 메시지: {rawdata}")
+                        elif "data" in rawdata and rawdata["topic"] == "wallet":
+                            exec_data = rawdata["data"][0]
+                            totalEquity = exec_data["totalEquity"] #총 순자산
+                            totalAvailableBalance = exec_data["totalAvailableBalance"] #주문 가능 잔액
+                            walletBalance = exec_data["coin"][0]["walletBalance"]
+                            await notify(
+                                f"{str(datetime.datetime.now())}\n"
+                                f"[[[[[[[[지갑]]]]]]]]\n"
+                                f"[총 순자산]: {totalEquity}\n"
+                                f"[주문가능잔액]: {totalAvailableBalance}\n"
+                                f"[USDT개수]: {walletBalance}"
+                            )
             except websockets.ConnectionClosed:
                 print("❌ Private WebSocket 연결 끊김, 재연결 시도 중...")
                 await asyncio.sleep(3)
@@ -157,28 +178,16 @@ async def bybit_ws_client():
                         msg = json.loads(data)
                         if 'ts' in msg:
                             current_time = datetime.datetime.fromtimestamp(msg['ts'] / 1000)
-                        else:
-                            print("ts 값이 없습니다:", msg)
                         
                         # 비트코인 현재가
                         if msg.get("topic") == "tickers.BTCUSDT":
                             mark_price = msg["data"].get("markPrice")
                         
                         if mark_price is not None:
+                            #매매 조건
                             if trade_ended == False and hold_amount < target_hold_amount:
                                 order = await place_order_with_tp_sl("Sell")
-                                position = session.get_positions(
-                                    category="linear",
-                                    symbol="BTCUSDT"
-                                )
-                                buy_price = float(position["result"]["list"][0]["avgPrice"])
-                                hold_amount = float(position["result"]["list"][0]["size"])
-                                await notify(
-                                    f"{str(datetime.datetime.now())}\n"
-                                    f"[체결가]: {buy_price}\n"
-                                    f"[포지션]: {position["result"]["list"][0]["side"]}\n"
-                                    f"[수량]: {position["result"]["list"][0]["size"]}")
-                                print(f"[SIDE]: {position["result"]["list"][0]["side"]} [QTY]: {position["result"]["list"][0]["size"]}")
+                                hold_amount = order
                                 time.sleep(0.1)
                                 
                             if trade_ended == False:
@@ -187,7 +196,7 @@ async def bybit_ws_client():
                                     symbol="BTCUSDT"
                                 )
                                 if position["result"]["list"][0]["size"] == '0':
-                                    print("++++++++++++++++++++매도완료+++++++++++++++")
+                                    print("+++++++++++++++포지션청산+++++++++++++++")
                                     hold_amount = 0.0
                                 else :
                                     print(f'현재시간 : {current_time}, 현재가 : {mark_price}, 미실현수익 : {position["result"]["list"][0]["unrealisedPnl"]}')
