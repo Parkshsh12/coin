@@ -87,8 +87,8 @@ async def place_order_with_tp_sl(order_side, tp_perc=0.011, sl_perc=0.005):
     hold_amount = float(pos["size"])
     side = "LONG" if pos["side"] == "Buy" else "SELL"
     await notify(
-        f"포지션진입\n"
         f"{str(datetime.datetime.now())}\n"
+        f"[[[[[[[포지션진입]]]]]]]\n"
         f"[진입가]:{base_price}\n"
         f"[TP]:{take_profit}\n"
         f"[SL]:{stop_loss}\n"
@@ -136,12 +136,14 @@ async def bybit_private_ws():
                                 price = exec_data["execValue"]
                                 side = exec_data["side"]
                                 size = exec_data["closedSize"]
+                                execPnl = exec_data["execPnl"]
                                 side = "SHORT" if side == "Buy" else "LONG"
                                 await notify(
                                     f"{str(datetime.datetime.now())}\n"
                                     f"[[[[[[{side}포지션청산]]]]]]\n"
                                     f"[{symbol}][체결금액]: {price} USDT\n"
                                     f"[체결수량]: {size}"
+                                    f"[수익/손실]: {execPnl}"
                                 )
                                 print(f"[{symbol}][체결금액]: {price} USDT, {side}포지션 청산")
                         elif "data" in rawdata and rawdata["topic"] == "wallet":
