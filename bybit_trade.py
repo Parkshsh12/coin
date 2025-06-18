@@ -85,7 +85,7 @@ async def place_order_with_tp_sl(order_side, tp_perc=0.011, sl_perc=0.005):
         stopLoss=str(stop_loss)
     )
     hold_amount = float(pos["size"])
-    side = "LONG" if pos["side"] == "Buy" else "SELL"
+    side = "LONG" if pos["side"] == "Buy" else "SHORT"
     await notify(
         f"{str(datetime.datetime.now())}\n"
         f"[[[[[[[포지션진입]]]]]]]\n"
@@ -190,7 +190,7 @@ async def bybit_ws_client():
                         if mark_price is not None:
                             #매매 조건
                             if trade_ended == False and hold_amount < target_hold_amount:
-                                order = await place_order_with_tp_sl("Sell")
+                                order = await place_order_with_tp_sl("Buy")
                                 hold_amount = order
                                 time.sleep(0.1)
                                 
