@@ -142,7 +142,7 @@ async def bybit_private_ws():
                                     f"{str(datetime.datetime.now())}\n"
                                     f"[[[[[[{side}포지션청산]]]]]]\n"
                                     f"[{symbol}][체결금액]: {price} USDT\n"
-                                    f"[체결수량]: {size}"
+                                    f"[체결수량]: {size}\n"
                                     f"[수익/손실]: {execPnl}"
                                 )
                                 print(f"[{symbol}][체결금액]: {price} USDT, {side}포지션 청산")
