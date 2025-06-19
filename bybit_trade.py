@@ -14,9 +14,10 @@ from pybit.unified_trading import HTTP
 from dotenv import load_dotenv
 
 # 강제로 stdout, stderr의 인코딩을 UTF-8로 설정
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
-sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
-logging.basicConfig(filename="log.txt", level=logging.INFO, encoding="utf-8")
+
+log_date = datetime.datetime.now().strftime("%Y-%m-%d")
+log_path = f"C:/Users/ewide/Desktop/coin/log/log_{log_date}.txt"
+logging.basicConfig(filename=log_path, level=logging.INFO, encoding="utf-8")
 logging.getLogger("httpx").setLevel(logging.WARNING)
 
 hold_amount = 0.0               # 보유한 개수

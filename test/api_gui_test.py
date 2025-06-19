@@ -4,11 +4,10 @@ import json
 import datetime
 import subprocess
 from PyQt5.QtWidgets import (
-    QApplication, QWidget, QVBoxLayout, QLabel, QLineEdit, QPushButton, QTextEdit
+    QApplication, QWidget, QVBoxLayout, QLabel, QLineEdit, QPushButton, QTextEdit, QHBoxLayout
 )
 from PyQt5.QtCore import Qt, QTimer
 from PyQt5.QtGui import QFont
-from PyQt5.QtGui import QTextCursor
 
 class TradingGUI(QWidget):
     def __init__(self):
@@ -17,24 +16,47 @@ class TradingGUI(QWidget):
         self.setGeometry(200, 200, 600, 700)
         layout = QVBoxLayout()
 
-        # API 입력창들
+        # API Key
+        api_key_row = QHBoxLayout()
+        api_key_label = QLabel("API Key:")
         self.api_key_input = QLineEdit()
-        self.api_key_input.setPlaceholderText("API Key")
-        layout.addWidget(self.api_key_input)
+        api_key_row.addWidget(api_key_label)
+        api_key_row.addWidget(self.api_key_input)
+        layout.addLayout(api_key_row)
 
+        # API Secret
+        api_secret_row = QHBoxLayout()
+        api_secret_label = QLabel("API Secret:")
         self.api_secret_input = QLineEdit()
-        self.api_secret_input.setPlaceholderText("API Secret")
-        layout.addWidget(self.api_secret_input)
+        api_secret_row.addWidget(api_secret_label)
+        api_secret_row.addWidget(self.api_secret_input)
+        layout.addLayout(api_secret_row)
 
+        # Telegram Token
+        telegram_token_row = QHBoxLayout()
+        telegram_token_label = QLabel("Telegram Bot Token:")
         self.telegram_token_input = QLineEdit()
-        self.telegram_token_input.setPlaceholderText("Telegram Bot Token")
-        layout.addWidget(self.telegram_token_input)
+        telegram_token_row.addWidget(telegram_token_label)
+        telegram_token_row.addWidget(self.telegram_token_input)
+        layout.addLayout(telegram_token_row)
 
+        # Telegram Chat ID
+        telegram_chat_row = QHBoxLayout()
+        telegram_chat_label = QLabel("Telegram Chat ID:")
         self.telegram_chat_input = QLineEdit()
-        self.telegram_chat_input.setPlaceholderText("Telegram Chat ID")
-        layout.addWidget(self.telegram_chat_input)
+        telegram_chat_row.addWidget(telegram_chat_label)
+        telegram_chat_row.addWidget(self.telegram_chat_input)
+        layout.addLayout(telegram_chat_row)
 
-        # 버튼
+        # 투입 금액
+        amount_row = QHBoxLayout()
+        amount_label = QLabel("투입 금액 (USDT):")
+        self.amount_input = QLineEdit()
+        amount_row.addWidget(amount_label)
+        amount_row.addWidget(self.amount_input)
+        layout.addLayout(amount_row)
+
+        # 버튼들
         self.save_btn = QPushButton("🔒 설정 저장")
         self.save_btn.clicked.connect(self.save_config)
         layout.addWidget(self.save_btn)
@@ -56,12 +78,15 @@ class TradingGUI(QWidget):
         self.setLayout(layout)
 
         # 설정
+        self.running = False
         self.config_path = "user_config.json"
-        self.log_path = "log.txt"
+        self.log_date = datetime.datetime.now().strftime("%Y-%m-%d")
+        self.log_path = f"C:/Users/ewide/Desktop/coin/log/log_{self.log_date}.txt"
         self.process = None
+        self.last_log_line = 0
         self.load_config()
 
-        # 주기적으로 로그 파일 읽기
+        # 로그 로딩 타이머
         self.timer = QTimer()
         self.timer.timeout.connect(self.load_log_file)
         self.timer.start(3000)
@@ -77,7 +102,8 @@ class TradingGUI(QWidget):
             "API_KEY": self.api_key_input.text(),
             "API_SECRET": self.api_secret_input.text(),
             "TELEGRAM_BOT_TOKEN": self.telegram_token_input.text(),
-            "TELEGRAM_CHAT_ID": self.telegram_chat_input.text()
+            "TELEGRAM_CHAT_ID": self.telegram_chat_input.text(),
+            "TRADE_AMOUNT": self.amount_input.text()
         }
         with open(self.config_path, "w", encoding="utf-8") as f:
             json.dump(config, f)
@@ -91,6 +117,7 @@ class TradingGUI(QWidget):
                 self.api_secret_input.setText(config.get("API_SECRET", ""))
                 self.telegram_token_input.setText(config.get("TELEGRAM_BOT_TOKEN", ""))
                 self.telegram_chat_input.setText(config.get("TELEGRAM_CHAT_ID", ""))
+                self.amount_input.setText(config.get("TRADE_AMOUNT", ""))
 
     def start_trading(self):
         if not os.path.exists("bybit_trade.py"):
@@ -106,21 +133,32 @@ class TradingGUI(QWidget):
             [sys.executable, "bybit_trade.py"],
             env=env
         )
+        self.running = True
+        self.timer.start(3000)
         self.append_log("🚀 거래 스크립트 실행 중...")
 
     def stop_trading(self):
         if self.process and self.process.poll() is None:
+            self.running = False
             self.process.terminate()
+            self.timer.stop()  # 로그 읽기 타이머 정지
             self.append_log("🛑 거래 스크립트 종료됨")
             self.process = None
         else:
             self.append_log("⚠️ 실행 중인 거래가 없습니다")
 
     def load_log_file(self):
+        if not self.running:
+            return
         if os.path.exists(self.log_path):
             with open(self.log_path, "r", encoding="utf-8") as f:
-                lines = f.readlines()[-30:]  # 마지막 30줄만 표시
-            self.log_output.setPlainText("".join(lines))
+                lines = f.readlines()
+                new_lines = lines[self.last_log_line:]
+                for line in new_lines:
+                    self.log_output.append(line.strip())
+                    self.log_output.moveCursor(self.log_output.textCursor().End)
+                    self.log_output.ensureCursorVisible()
+                self.last_log_line = len(lines)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
