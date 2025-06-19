@@ -13,8 +13,6 @@ from telegram.request import HTTPXRequest
 from pybit.unified_trading import HTTP
 from dotenv import load_dotenv
 
-# 강제로 stdout, stderr의 인코딩을 UTF-8로 설정
-
 log_date = datetime.datetime.now().strftime("%Y-%m-%d")
 log_path = f"log/log_{log_date}.txt"
 logging.basicConfig(filename=log_path, level=logging.INFO, encoding="utf-8")
