@@ -16,7 +16,7 @@ from dotenv import load_dotenv
 # 강제로 stdout, stderr의 인코딩을 UTF-8로 설정
 
 log_date = datetime.datetime.now().strftime("%Y-%m-%d")
-log_path = f"C:/Users/ewide/Desktop/coin/log/log_{log_date}.txt"
+log_path = f"log/log_{log_date}.txt"
 logging.basicConfig(filename=log_path, level=logging.INFO, encoding="utf-8")
 logging.getLogger("httpx").setLevel(logging.WARNING)
 

@@ -79,9 +79,9 @@ class TradingGUI(QWidget):
 
         # 설정
         self.running = False
-        self.config_path = "user_config.json"
+        self.config_path = "config/user_config.json"
         self.log_date = datetime.datetime.now().strftime("%Y-%m-%d")
-        self.log_path = f"C:/Users/ewide/Desktop/coin/log/log_{self.log_date}.txt"
+        self.log_path = f"/log/log_{self.log_date}.txt"
         self.process = None
         self.last_log_line = 0
         self.load_config()

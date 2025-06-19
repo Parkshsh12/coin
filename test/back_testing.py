@@ -3,19 +3,21 @@ import os
 import pandas as pd
 from pybit.unified_trading import HTTP
 import matplotlib.pyplot as plt
-
-# 절대경로 추가
-sys.path.append(r"C:\Users\ewide\Desktop\coin")
-
+from dotenv import load_dotenv
+current_dir = os.path.dirname(os.path.abspath(__file__))
+coin_dir = os.path.abspath(os.path.join(current_dir, ".."))
+sys.path.append(coin_dir)
 from util.trading_utils import get_ohlcv
 
-api_key = "uobPGl5Ol3lBSqztB8"
-api_secret = "SubtOb7Cwti2Bdan10gjNfkSe6ZZtbEhlcZL"
+load_dotenv()
 
-session = HTTP(testnet=True, api_key=api_key, api_secret=api_secret)
+api_key = os.getenv("API_KEY")
+api_secret = os.getenv("API_SECRET")
+
+session = HTTP(testnet=False, api_key=api_key, api_secret=api_secret)
 
 # 데이터 로딩
-df = get_ohlcv(session, symbol="BTCUSDT", interval="5", limit=1000)
+df = get_ohlcv(session, symbol="BTCUSDT", interval="15", limit=1000)
 # 이동평균선 계산
 df["ma5"] = df["close"].rolling(window=5).mean()
 df["ma10"] = df["close"].rolling(window=10).mean()
@@ -35,6 +37,7 @@ for i in range(20, len(df) - 1):
     ma5 = df["ma5"].iloc[i]
     ma10 = df["ma10"].iloc[i]
     ma20 = df["ma20"].iloc[i]
+    print(f"{price}, {ma5}, {ma10}, {ma20}")
 
     if position is None:
         if price > ma5 and price > ma10 and price > ma20:
@@ -86,10 +89,3 @@ print(f"승: {wins}, 패: {losses}")
 print(f"승률: {win_rate:.2f}%")
 print(f"최종 자본: ${capital:.2f}")
 print(f"평균 수익: ${avg_profit:.2f}")
-
-# 그래프 출력
-pd.Series(capital_log).plot(title="📈 누적 자본 변화")
-plt.xlabel("트레이드 번호")
-plt.ylabel("자본($)")
-plt.grid()
-plt.show()
