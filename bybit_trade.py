@@ -8,11 +8,16 @@ import telegram
 import os
 import sys
 import io
+import logging
 from telegram.request import HTTPXRequest
 from pybit.unified_trading import HTTP
 from dotenv import load_dotenv
 
+# 강제로 stdout, stderr의 인코딩을 UTF-8로 설정
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
+logging.basicConfig(filename="log.txt", level=logging.INFO, encoding="utf-8")
+logging.getLogger("httpx").setLevel(logging.WARNING)
 
 hold_amount = 0.0               # 보유한 개수
 target_hold_amount = 0.001      # 구매할 개수 
@@ -52,7 +57,7 @@ async def notify(text):
     try:
         await telegram_bot.send_message(chat_id=TELEGRAM_CHAT_ID, text=text)
     except Exception as e:
-        print(f"[Telegram Error] {e}")
+        logging.info(f"[Telegram Error] {e}")
 
 async def place_order_with_tp_sl(order_side, tp_perc=0.011, sl_perc=0.005):
     order = session.place_order(
@@ -63,7 +68,6 @@ async def place_order_with_tp_sl(order_side, tp_perc=0.011, sl_perc=0.005):
         qty=str(target_hold_amount),
         timeInForce="GTC",
     )
-    print(f"진입 주문결과: {order["retMsg"]}, 주문번호: {order["result"]["orderId"]}")
     time.sleep(1)
     #포지션 정보 가져오기
     positions = session.get_positions(category="linear", symbol="BTCUSDT")
@@ -94,14 +98,19 @@ async def place_order_with_tp_sl(order_side, tp_perc=0.011, sl_perc=0.005):
         f"[SL]:{stop_loss}\n"
         f"[SIDE]:{side}\n"
         f"[수량]:{pos["size"]}\n"
-        
     )
-    print(f"[진입가]:{base_price}, [TP]:{take_profit}, [SL]:{stop_loss}")
+    logging.info(f"{str(datetime.datetime.now())}\n"
+        f"[[[[[[[포지션진입]]]]]]]\n"
+        f"[진입가]:{base_price}\n"
+        f"[TP]:{take_profit}\n"
+        f"[SL]:{stop_loss}\n"
+        f"[SIDE]:{side}\n"
+        f"[수량]:{pos["size"]}\n")
     return hold_amount
 
 def close_position(position_side):
     side = "Sell" if position_side == "Buy" else "Buy"
-    print(f"시장가 {side}로 기존 포지션 청산 시도")
+    logging.info(f"시장가 {side}로 기존 포지션 청산 시도")
     order = session.place_order(
         category="linear",
         symbol="BTCUSDT",
@@ -111,14 +120,14 @@ def close_position(position_side):
         reduceOnly=True,
         timeInForce="GoodTillCancel"
     )
-    print("청산 주문결과:", order)
+    logging.info("청산 주문결과:", order)
     return order
 
 async def bybit_private_ws():
         while True:
             try:
                 async with websockets.connect("wss://stream-testnet.bybit.com/v5/private?max_active_time=10m") as ws_private:
-                    print("✅ Private WebSocket 연결됨")
+                    logging.info("✅ Private WebSocket 연결됨")
                     await ws_private.send(send_auth())  # () 붙여야 됨!
                     await ws_private.send(json.dumps({
                         "op": "subscribe",
@@ -128,7 +137,6 @@ async def bybit_private_ws():
                     while True:
                         data_rcv_strjson = await ws_private.recv()
                         rawdata = json.loads(data_rcv_strjson)
-                        print("📥 [PRIVATE]", rawdata)
                         if "data" in rawdata and rawdata["topic"] == "execution":
                             exec_data = rawdata["data"][0]
                             if float(exec_data["closedSize"]) > 0:
@@ -145,7 +153,11 @@ async def bybit_private_ws():
                                     f"[체결수량]: {size}\n"
                                     f"[수익/손실]: {execPnl}"
                                 )
-                                print(f"[{symbol}][체결금액]: {price} USDT, {side}포지션 청산")
+                                logging.info(f"{str(datetime.datetime.now())}\n"
+                                    f"[[[[[[{side}포지션청산]]]]]]\n"
+                                    f"[{symbol}][체결금액]: {price} USDT\n"
+                                    f"[체결수량]: {size}\n"
+                                    f"[수익/손실]: {execPnl}")
                         elif "data" in rawdata and rawdata["topic"] == "wallet":
                             exec_data = rawdata["data"][0]
                             totalEquity = exec_data["totalEquity"] #총 순자산
@@ -158,13 +170,18 @@ async def bybit_private_ws():
                                 f"[주문가능잔액]: {totalAvailableBalance}\n"
                                 f"[USDT개수]: {walletBalance}"
                             )
+                            logging.info( f"{str(datetime.datetime.now())}\n"
+                                f"[[[[[[[[지갑]]]]]]]]\n"
+                                f"[총 순자산]: {totalEquity}\n"
+                                f"[주문가능잔액]: {totalAvailableBalance}\n"
+                                f"[USDT개수]: {walletBalance}")
             except (websockets.ConnectionClosed, websockets.WebSocketException) as e:
-                print(f"❌ private WebSocket 연결 끊김 또는 예외 발생: {e}. 3초 후 재시도...")
+                logging.info(f"❌ private WebSocket 연결 끊김 또는 예외 발생: {e}. 3초 후 재시도...")
                 await notify(f"❌ private WebSocket 연결 끊김 또는 예외 발생: {e}. 3초 후 재시도...")
                 await asyncio.sleep(3)
 
             except Exception as e:
-                print(f"⚠️ 예상치 못한 예외: {e}. 5초 후 재시도...")
+                logging.info(f"⚠️ 예상치 못한 예외: {e}. 5초 후 재시도...")
                 await notify(f"⚠️ private WebSocket 예상치 못한 예외: {e}. 5초 후 재시도...")
                 await asyncio.sleep(5)
 
@@ -206,28 +223,29 @@ async def bybit_ws_client():
                                     symbol="BTCUSDT"
                                 )
                                 if position["result"]["list"][0]["size"] == '0':
-                                    print("+++++++++++++++포지션청산+++++++++++++++")
+                                    logging.info("+++++++++++++++포지션청산+++++++++++++++")
                                     hold_amount = 0.0
                                 else :
-                                    print(f'현재시간 : {current_time}, 현재가 : {mark_price}, 미실현수익 : {position["result"]["list"][0]["unrealisedPnl"]}')
+                                    logging.info(f'현재시간 : {current_time}, 현재가 : {position["result"]["list"][0]["markPrice"]}, 미실현수익 : {position["result"]["list"][0]["unrealisedPnl"]}')
                     except Exception as e_inner:
-                        print(f"⚠️ 내부 처리 중 예외 발생: {e_inner}")
+                        logging.info(f"⚠️ 내부 처리 중 예외 발생: {e_inner}")
                         await notify(
                             f"{str(datetime.datetime.now())}⚠️\n"
                             f"내부 처리 중 예외 발생: {e_inner}")
                         break
                    
         except (websockets.ConnectionClosed, websockets.WebSocketException) as e:
-                print(f"❌ public WebSocket 연결 끊김 또는 예외 발생: {e}. 3초 후 재시도...")
+                logging.info(f"❌ public WebSocket 연결 끊김 또는 예외 발생: {e}. 3초 후 재시도...")
                 await notify(f"❌ public WebSocket 연결 끊김 또는 예외 발생: {e}. 3초 후 재시도...")
                 await asyncio.sleep(3)
 
         except Exception as e:
-            print(f"⚠️ 예상치 못한 예외: {e}. 5초 후 재시도...")
+            logging.info(f"⚠️ 예상치 못한 예외: {e}. 5초 후 재시도...")
             await notify(f"⚠️ public WebSocket 예상치 못한 예외: {e}. 5초 후 재시도...")
             await asyncio.sleep(5)
                 
 async def main():
+    logging.info("🚀 자동매매 시작")
     await notify(f"{str(datetime.datetime.now())}\n"
                  f"+++++매매시작+++++")
     await asyncio.gather(
