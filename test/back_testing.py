@@ -1,111 +1,131 @@
 import os
 import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
 from pybit.unified_trading import HTTP
 from dotenv import load_dotenv
 
 # 환경 변수 로드
 load_dotenv()
-api_key    = os.getenv("API_KEY")
-api_secret = os.getenv("API_SECRET")
-session    = HTTP(testnet=False, api_key=api_key, api_secret=api_secret)
+session = HTTP(
+    testnet=False,
+    api_key=os.getenv("API_KEY"),
+    api_secret=os.getenv("API_SECRET")
+)
 
-def get_ohlcv(session, symbol, interval, limit=1500):
-    data = session.get_kline(category="linear", symbol=symbol,
-                             interval=interval, limit=limit)
-    df = pd.DataFrame(data['result']['list'],
+def get_ohlcv(session, symbol, interval, limit=1000):
+    resp = session.get_kline(
+        category="linear",
+        symbol=symbol,
+        interval=interval,
+        limit=limit
+    )
+    df = pd.DataFrame(resp['result']['list'],
                       columns=['timestamp','open','high','low','close','volume','turnover'])
-    df[['open','high','low','close']] = df[['open','high','low','close']].astype(float)
+    df = df.astype({'open':float,'high':float,'low':float,'close':float})
     df['timestamp'] = pd.to_datetime(df['timestamp'].astype(int), unit='ms')
     return df
 
 df = get_ohlcv(session, "BTCUSDT", "15", limit=1500)
 
-# ATR 계산
-df['H-L']  = df['high'] - df['low']
-df['H-PC'] = (df['high'] - df['close'].shift(1)).abs()
-df['L-PC'] = (df['low']  - df['close'].shift(1)).abs()
-df['TR']   = df[['H-L','H-PC','L-PC']].max(axis=1)
-df['ATR']  = df['TR'].ewm(span=14, adjust=False).mean()
+# 1) RSI 계산 (14)
+delta = df['close'].diff()
+gain = delta.clip(lower=0)
+loss = -delta.clip(upper=0)
+avg_gain = gain.ewm(alpha=1/14, adjust=False).mean()
+avg_loss = loss.ewm(alpha=1/14, adjust=False).mean()
+rs = avg_gain / avg_loss
+df['RSI'] = 100 - (100 / (1 + rs))
 
-def detect_fvg(df):
-    fvg_list = []
-    for i in range(2, len(df)):
-        h2, l2 = df['high'].iat[i-2], df['low'].iat[i-2]
-        h1, l1 = df['high'].iat[i-1], df['low'].iat[i-1]
-        h0, l0 = df['high'].iat[i  ], df['low'].iat[i  ]
-        # 하락 FVG
-        if l2 > h1 and l1 > h0:
-            fvg_list.append({'start': i-1, 'top': l2, 'bot': h0, 'used': False})
-        # 상승 FVG
-        elif h2 < l1 and h1 < l0:
-            fvg_list.append({'start': i-1, 'top': l0, 'bot': h2, 'used': False})
-    return fvg_list
+# 2) 스윙 포인트 찾기 (low 기준 local minima)
+#    앞뒤 n=5봉보다 낮은 저점만 스윙 low로 간주
+n = 5
+df['is_swing_low'] = (
+    df['low']
+    .rolling(window=2*n+1, center=True)
+    .apply(lambda x: np.argmin(x)==n, raw=True)
+    .fillna(0).astype(bool)
+)
 
-def detect_mss(df):
-    mss = []
-    for i in range(2, len(df)):
-        if (df['low'].iat[i-2] > df['low'].iat[i-1] < df['low'].iat[i]
-            and df['close'].iat[i] > df['high'].iat[i-2]):
-            mss.append(i)
-    return set(mss)
+# 3) 다이버전스 감지 함수
+def check_regular_divergence(df, i):
+    """
+    i 시점에서 직전 두 개의 스윙 low 인덱스를 가져와
+    가격은 더 낮은 저점, RSI는 더 높은 저점이면 강세 다이버전스 리턴
+    반대면 약세 다이버전스
+    """
+    lows = df.index[df['is_swing_low'] & (df.index <= i)]
+    if len(lows) < 2:
+        return None
+    prev, curr = lows[-2], lows[-1]
+    price_prev, price_curr = df.at[prev,'low'], df.at[curr,'low']
+    rsi_prev,   rsi_curr   = df.at[prev,'RSI'], df.at[curr,'RSI']
+    # 강세 레귤러: price_down & rsi_up
+    if price_curr < price_prev and rsi_curr > rsi_prev:
+        return "bull"
+    # 약세 레귤러: price_up & rsi_down
+    if price_curr > price_prev and rsi_curr < rsi_prev:
+        return "bear"
+    return None
 
-fvg_zones = detect_fvg(df)
-mss_points = detect_mss(df)
-print(f"▶ 검출된 FVG 개수: {len(fvg_zones)}")
-print(f"▶ 검출된 MSS 개수: {len(mss_points)}")
-
-# 백테스트 파라미터
-capital      = 10000
-leverage     = 10
-tp_factor    = 2.0
-sl_factor    = 1.0
-position     = None
-trades, wins, losses = [],0,0
+# 4) 백테스트 루프에 다이버전스 로직 적용
+capital = 10000
+capital_log = [capital]
+position = None
+entry_price = tp = sl = 0
+wins = losses = 0
+trades = []
+leverage = 25
 
 for i in range(50, len(df)-1):
-    price = df['close'].iat[i]
-    atr   = df['ATR'].iat[i]
-    time  = df['timestamp'].iat[i]
-    # MSS 최근 3봉 내에 있나
-    recent_mss = any(j in mss_points for j in range(i-3, i+1))
-    # 미사용 FVG 중 ATR*1.5 이내 매칭
-    match = None
-    tol   = atr * 1.5
-    for f in fvg_zones:
-        if not f['used'] and f['start'] < i:
-            if abs(price - f['top']) <= tol or abs(price - f['bot']) <= tol:
-                match = f
-                break
+    price = df.at[i,'close']
+    high  = df.at[i+1,'high']
+    low   = df.at[i+1,'low']
+    time  = df.at[i,'timestamp']
+    div = check_regular_divergence(df, i)
+    
+    # 포지션 진입
+    if position is None and div=="bull":
+        position = "long"
+        entry_price = price
+        print(f"▶️ LONG 진입 @{entry_price:.2f} | {time}")
+    elif position is None and div=="bear":
+        position = "short"
+        entry_price = price
+        print(f"▶️ SHORT 진입 @{entry_price:.2f} | {time}")
+    
+    # 포지션 청산 (간단: 다음 봉 종가 청산)
+    elif position=="long":
+        exit_price = df.at[i+1,'close']
+        profit_pct = (exit_price-entry_price)/entry_price * leverage
+        profit = capital * profit_pct
+        capital += profit; capital_log.append(capital)
+        trades.append(profit)
+        wins  += profit>0; losses += profit<0
+        print(f"{'✅' if profit>0 else '❌'} LONG 종료 @{exit_price:.2f} | {df.at[i+1,'timestamp']} | 수익률: {profit_pct:.2%}, 수익: ${profit:.2f}")
+        position = None
+        
+    elif position=="short":
+        exit_price = df.at[i+1,'close']
+        profit_pct = (entry_price-exit_price)/entry_price * leverage
+        profit = capital * profit_pct
+        capital += profit; capital_log.append(capital)
+        trades.append(profit)
+        wins  += profit>0; losses += profit<0
+        print(f"{'✅' if profit>0 else '❌'} SHORT 종료 @{exit_price:.2f} | {df.at[i+1,'timestamp']} | 수익률: {profit_pct:.2%}, 수익: ${profit:.2f}")
+        position = None
 
-    print(f"[DEBUG] {time} | P:{price:.0f} | MSS:{recent_mss} | FVG:{match is not None}")
+# 최종 통계
+total = wins+losses
+print(f"\n📊 총 트레이드: {total}")
+print(f"✅ 승: {wins}, ❌ 패: {losses}")
+print(f"🏆 승률: {wins/total*100:.2f}%")
+print(f"💰 최종 자본: ${capital:.2f}")
+print(f"📈 평균 P&L: ${np.mean(trades):.2f}")
 
-    # 진입
-    if position is None and recent_mss and match:
-        entry = price
-        tp    = entry + atr*tp_factor
-        sl    = entry - atr*sl_factor
-        position = 'long'
-        match['used'] = True
-        print(f"▶ LONG IN @ {entry:.2f}")
-
-    # 청산
-    elif position=='long':
-        nh, nl = df['high'].iat[i+1], df['low'].iat[i+1]
-        nt     = df['timestamp'].iat[i+1]
-        if nh>=tp or nl<=sl:
-            exit_p = tp if nh>=tp else sl
-            ret    = (exit_p-entry)/entry*leverage
-            profit = capital*ret
-            capital+= profit
-            trades.append(profit)
-            if profit>0: wins+=1
-            else:       losses+=1
-            print(f"{'✅' if profit>0 else '❌'} OUT @ {exit_p:.2f} | R:{ret:.2%}")
-            position=None
-
-# 결과
-tot = wins+losses
-print(f"\n=== 결과 ===")
-print(f"트레이드 수: {tot}, 승:{wins}, 패:{losses}")
-print(f"승률: {wins/tot*100 if tot else 0:.2f}%")
-print(f"최종 자본: {capital:.2f}")
+# 결과 차트
+pd.Series(capital_log).plot(title="다이버전스 전략 누적 자본")
+plt.xlabel("트레이드 번호")
+plt.ylabel("자본($)")
+plt.grid()
+plt.show()
