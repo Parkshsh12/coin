@@ -1,101 +1,95 @@
-from pybit.unified_trading import HTTP
+import sys
+import os
 import pandas as pd
-from trading_utils import get_ohlcv, get_rsi, get_bollinger
+from pybit.unified_trading import HTTP
+import matplotlib.pyplot as plt
+
+# 절대경로 추가
+sys.path.append(r"C:\Users\ewide\Desktop\coin")
+
+from util.trading_utils import get_ohlcv
 
 api_key = "uobPGl5Ol3lBSqztB8"
 api_secret = "SubtOb7Cwti2Bdan10gjNfkSe6ZZtbEhlcZL"
 
-session = HTTP(
-    testnet=True,
-    api_key=api_key,
-    api_secret=api_secret
-)
+session = HTTP(testnet=True, api_key=api_key, api_secret=api_secret)
 
-# OHLCV 과거 데이터 충분히 받아오기 (예: 1000개)
+# 데이터 로딩
+df = get_ohlcv(session, symbol="BTCUSDT", interval="5", limit=1000)
+# 이동평균선 계산
+df["ma5"] = df["close"].rolling(window=5).mean()
+df["ma10"] = df["close"].rolling(window=10).mean()
+df["ma20"] = df["close"].rolling(window=20).mean()
 
-df = get_ohlcv(session, symbol="BTCUSDT", interval="15", limit=1000)
-df = get_rsi(df, period=14)
-df = get_bollinger(df, period=20, num_std=2)
-
-trade_results = []
-win = 0
-lose = 0
-total_profit = 0
+capital = 10000  # 초기 자본
+capital_log = [capital]
 position = None
 entry_price = 0
-tp = 0
-sl = 0
+tp = sl = 0
+wins = 0
+losses = 0
+trades = []
 
-for i in range(20, len(df)-1):
-    close = df['close'].iloc[i]
-    rsi = df['rsi'].iloc[i]
-    bb_upper = df['bb_upper'].iloc[i]
-    bb_lower = df['bb_lower'].iloc[i]
+for i in range(20, len(df) - 1):
+    price = df["close"].iloc[i]
+    ma5 = df["ma5"].iloc[i]
+    ma10 = df["ma10"].iloc[i]
+    ma20 = df["ma20"].iloc[i]
 
-    # 롱 진입: 종가가 볼린저밴드 하단 이하 AND RSI 35 이하
-    if close <= bb_lower and position is None:
-        position = "Long"
-        entry_price = close
-        tp = entry_price * 1.01      # 익절 1%
-        sl = entry_price * 0.999     # 손절 -0.5%
-        print(f"[{df['timestamp'].iloc[i]}] 롱 진입! 진입가: {entry_price:.2f}, BB하단: {bb_lower:.2f}, RSI: {rsi:.2f}")
+    if position is None:
+        if price > ma5 and price > ma10 and price > ma20:
+            position = "long"
+            entry_price = price
+            tp = entry_price * 1.20
+            sl = entry_price * 0.95
+        elif price < ma5 and price < ma10 and price < ma20:
+            position = "short"
+            entry_price = price
+            tp = entry_price * 0.80
+            sl = entry_price * 1.05
 
-    # 숏 진입: 종가가 볼린저밴드 상단 이상 AND RSI 65 이상
-    elif close >= bb_upper and position is None:
-        position = "Short"
-        entry_price = close
-        tp = entry_price * 0.99      # 익절 -1%
-        sl = entry_price * 1.001     # 손절 +0.5%
-        print(f"[{df['timestamp'].iloc[i]}] 숏 진입! 진입가: {entry_price:.2f}, BB상단: {bb_upper:.2f}, RSI: {rsi:.2f}")
-
-    # 롱 포지션 청산
-    elif position == "Long":
-        high = df['high'].iloc[i+1]
-        low = df['low'].iloc[i+1]
-        exit_price = None
-        result = None
-        if high >= tp:
-            exit_price = tp
-            result = "익절"
-        elif low <= sl:
-            exit_price = sl
-            result = "손절"
-        if exit_price is not None:
-            profit = exit_price - entry_price
-            trade_results.append(profit)
-            total_profit += profit
-            if profit > 0:
-                win += 1
-            else:
-                lose += 1
-            print(f"[{df['timestamp'].iloc[i+1]}] 롱 {result}! 청산가: {exit_price:.2f}, 수익: {profit:.2f}")
+    elif position == "long":
+        high = df["high"].iloc[i + 1]
+        low = df["low"].iloc[i + 1]
+        if high >= tp or low <= sl:
+            exit_price = tp if high >= tp else sl
+            profit_pct = (exit_price - entry_price) / entry_price
+            profit = capital * profit_pct
+            capital += profit
+            trades.append(profit)
+            capital_log.append(capital)
+            wins += 1 if profit > 0 else 0
+            losses += 1 if profit < 0 else 0
             position = None
 
-    # 숏 포지션 청산
-    elif position == "Short":
-        high = df['high'].iloc[i+1]
-        low = df['low'].iloc[i+1]
-        exit_price = None
-        result = None
-        if low <= tp:
-            exit_price = tp
-            result = "익절"
-        elif high >= sl:
-            exit_price = sl
-            result = "손절"
-        if exit_price is not None:
-            profit = entry_price - exit_price
-            trade_results.append(profit)
-            total_profit += profit
-            if profit > 0:
-                win += 1
-            else:
-                lose += 1
-            print(f"[{df['timestamp'].iloc[i+1]}] 숏 {result}! 청산가: {exit_price:.2f}, 수익: {profit:.2f}")
+    elif position == "short":
+        high = df["high"].iloc[i + 1]
+        low = df["low"].iloc[i + 1]
+        if low <= tp or high >= sl:
+            exit_price = tp if low <= tp else sl
+            profit_pct = (entry_price - exit_price) / entry_price
+            profit = capital * profit_pct
+            capital += profit
+            trades.append(profit)
+            capital_log.append(capital)
+            wins += 1 if profit > 0 else 0
+            losses += 1 if profit < 0 else 0
             position = None
 
-# 결과 출력
-print(f"총 트레이드 횟수: {len(trade_results)}")
-print(f"승률: {win/len(trade_results)*100 if trade_results else 0:.2f}%")
-print(f"누적수익: {total_profit:.2f}")
-print(f"평균 수익: {total_profit/len(trade_results) if trade_results else 0:.2f}")
+# 출력
+total_trades = wins + losses
+win_rate = (wins / total_trades) * 100 if total_trades else 0
+avg_profit = sum(trades) / total_trades if total_trades else 0
+
+print(f"총 트레이드 수: {total_trades}")
+print(f"승: {wins}, 패: {losses}")
+print(f"승률: {win_rate:.2f}%")
+print(f"최종 자본: ${capital:.2f}")
+print(f"평균 수익: ${avg_profit:.2f}")
+
+# 그래프 출력
+pd.Series(capital_log).plot(title="📈 누적 자본 변화")
+plt.xlabel("트레이드 번호")
+plt.ylabel("자본($)")
+plt.grid()
+plt.show()

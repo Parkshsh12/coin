@@ -6,23 +6,23 @@ import json
 import hmac
 import telegram
 import os
+import sys
+import io
 from telegram.request import HTTPXRequest
 from pybit.unified_trading import HTTP
 from dotenv import load_dotenv
 
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+
 hold_amount = 0.0               # 보유한 개수
 target_hold_amount = 0.001      # 구매할 개수 
 buy_price = None                # 매수한 금액
-target_take_profit_ratio = 0.1  # 1%
-target_stop_loss_ratio = -0.01  # -1%
 trade_ended = False             # 트레이딩 종료 유무 판단
-last_notify_time = 0
 # Bybit API 키 정보 (본인 정보 입력)
 load_dotenv()
 
 api_key = os.getenv("API_KEY")
 api_secret = os.getenv("API_SECRET")
-
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
@@ -32,7 +32,7 @@ session = HTTP(
     api_secret=api_secret
 )
 
-request = HTTPXRequest(read_timeout=10.0, connect_timeout=10.0)
+request = HTTPXRequest(read_timeout=20.0, connect_timeout=20.0)
 telegram_bot = telegram.Bot(token=TELEGRAM_BOT_TOKEN, request=request)
 
 def send_auth():
@@ -158,9 +158,15 @@ async def bybit_private_ws():
                                 f"[주문가능잔액]: {totalAvailableBalance}\n"
                                 f"[USDT개수]: {walletBalance}"
                             )
-            except websockets.ConnectionClosed:
-                print("❌ Private WebSocket 연결 끊김, 재연결 시도 중...")
+            except (websockets.ConnectionClosed, websockets.WebSocketException) as e:
+                print(f"❌ private WebSocket 연결 끊김 또는 예외 발생: {e}. 3초 후 재시도...")
+                await notify(f"❌ private WebSocket 연결 끊김 또는 예외 발생: {e}. 3초 후 재시도...")
                 await asyncio.sleep(3)
+
+            except Exception as e:
+                print(f"⚠️ 예상치 못한 예외: {e}. 5초 후 재시도...")
+                await notify(f"⚠️ private WebSocket 예상치 못한 예외: {e}. 5초 후 재시도...")
+                await asyncio.sleep(5)
 
 async def bybit_ws_client():
     url = "wss://stream-testnet.bybit.com/v5/public/linear"
@@ -211,12 +217,15 @@ async def bybit_ws_client():
                             f"내부 처리 중 예외 발생: {e_inner}")
                         break
                    
-        except websockets.ConnectionClosed:
-                print("❌ Public WebSocket 연결 끊김, 재연결 시도 중...")
-                await notify(
-                    f"{str(datetime.datetime.now())}\n"
-                    f"❌ Public WebSocket 연결 끊김, 재연결 시도 중...")
+        except (websockets.ConnectionClosed, websockets.WebSocketException) as e:
+                print(f"❌ public WebSocket 연결 끊김 또는 예외 발생: {e}. 3초 후 재시도...")
+                await notify(f"❌ public WebSocket 연결 끊김 또는 예외 발생: {e}. 3초 후 재시도...")
                 await asyncio.sleep(3)
+
+        except Exception as e:
+            print(f"⚠️ 예상치 못한 예외: {e}. 5초 후 재시도...")
+            await notify(f"⚠️ public WebSocket 예상치 못한 예외: {e}. 5초 후 재시도...")
+            await asyncio.sleep(5)
                 
 async def main():
     await notify(f"{str(datetime.datetime.now())}\n"
