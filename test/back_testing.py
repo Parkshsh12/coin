@@ -16,7 +16,7 @@ session = HTTP(
 # 백테스트 파라미터
 SYMBOL      = "BTCUSDT"
 INTERVAL    = "30"
-LIMIT       = 300
+LIMIT       = 1000
 SWING_N     = 10
 LEVERAGE    = 20
 FEE_RATE    = 0.00075   # 0.075% per side
@@ -33,7 +33,6 @@ def get_ohlcv(session, symbol, interval, limit=1000):
     df = df.astype({'open':float,'high':float,'low':float,'close':float})
     df['timestamp'] = pd.to_datetime(df['timestamp'].astype(int), unit='ms')
     df = df.sort_values('timestamp').reset_index(drop=True)
-   # print(df.head(30))
     return df
 
 df = get_ohlcv(session, SYMBOL, INTERVAL, LIMIT)
@@ -65,8 +64,6 @@ def calc_stochastic_smma(df, k_period=14, k_smooth=3, d_period=3):
     smoothed_k = smma(raw_k, k_smooth)
     smoothed_d = smma(smoothed_k, d_period)
 
-    
-
     df['%K'] = smoothed_k
     df['%D'] = smoothed_d
     return df
@@ -87,6 +84,7 @@ df['is_swing_high'] = (
 
 def check_stoch_divergence(df, i):
     lows = df.index[df['is_swing_low'] & (df.index <= i)]
+    print(lows)
     if len(lows) >= 2:
         prev, curr = lows[-2], lows[-1]
         if df.at[curr, 'low'] < df.at[prev, 'low'] and df.at[curr, '%D'] > df.at[prev, '%D']:
@@ -158,7 +156,7 @@ for i in range(15, len(df)-1):
 
 # — 최종 결과
 total = wins + losses
-
+print(df)
 if total > 0:
     print(f"\n📊 총 트레이드: {total}")
     print(f"✅ 승: {wins}, ❌ 패: {losses}")

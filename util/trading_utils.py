@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-def get_ohlcv(session, symbol, interval, limit=1000):
+def get_ohlcv(session, symbol, interval, limit):
     """Bybit에서 OHLCV 캔들 데이터 불러오기"""
     resp = session.get_kline(
         category="linear",
@@ -13,6 +13,7 @@ def get_ohlcv(session, symbol, interval, limit=1000):
                       columns=['timestamp','open','high','low','close','volume','turnover'])
     df = df.astype({'open':float, 'high':float, 'low':float, 'close':float})
     df['timestamp'] = pd.to_datetime(df['timestamp'].astype(int), unit='ms')
+    df = df.sort_values('timestamp').reset_index(drop=True)
     return df
 
 def smma(series, period):
@@ -67,13 +68,15 @@ def check_stoch_divergence(df):
     print(lows)
     if len(lows) >= 2:
         prev, curr = lows[-2], lows[-1]
-        if df.at[curr, 'low'] < df.at[prev, 'low'] and df.at[curr, '%D'] > df.at[prev, '%D']:
-            return "bull"
+        if curr == i:
+            if df.at[curr, 'low'] < df.at[prev, 'low'] and df.at[curr, '%D'] > df.at[prev, '%D']:
+                return "bull"
 
     highs = df.index[df['is_swing_high'] & (df.index <= i)]
     if len(highs) >= 2:
         prev, curr = highs[-2], highs[-1]
-        if df.at[curr, 'high'] > df.at[prev, 'high'] and df.at[curr, '%D'] < df.at[prev, '%D']:
-            return "bear"
+        if curr == i:
+            if df.at[curr, 'high'] > df.at[prev, 'high'] and df.at[curr, '%D'] < df.at[prev, '%D']:
+                return "bear"
 
     return None

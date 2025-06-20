@@ -103,6 +103,7 @@ async def bybit_ws_client():
                             df = util.trading_utils.calc_stochastic_smma(df)
                             df = util.trading_utils.calc_swing_high_low(df, config_val.SWING_N)
                             signal = util.trading_utils.check_stoch_divergence(df)
+                            print(df)
                             print(signal)
                             if config_val.trade_ended == False and config_val.hold_amount < config_val.target_hold_amount:
                                 #order = await place_order_with_tp_sl("Buy")
