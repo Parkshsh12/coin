@@ -84,21 +84,19 @@ df['is_swing_high'] = (
 
 def check_stoch_divergence(df, i):
     lows = df.index[df['is_swing_low'] & (df.index <= i)]
-    print(lows)
     if len(lows) >= 2:
         prev, curr = lows[-2], lows[-1]
         if df.at[curr, 'low'] < df.at[prev, 'low'] and df.at[curr, '%D'] > df.at[prev, '%D']:
-            print(f'lows, {lows}')
             return "bull"
 
     highs = df.index[df['is_swing_high'] & (df.index <= i)]
     if len(highs) >= 2:
         prev, curr = highs[-2], highs[-1]
         if df.at[curr, 'high'] > df.at[prev, 'high'] and df.at[curr, '%D'] < df.at[prev, '%D']:
-            print(f'highs, {highs}')
             return "bear"
     return None
 # 4) 백테스트 루프
+ABS_SL_USD = 500  # 고정 손절폭
 capital      = 10000
 capital_log  = [capital]
 position     = None
@@ -124,10 +122,11 @@ for i in range(15, len(df)-1):
     # — 청산 (다음 봉 종가)
     elif position == "long":
         exit_price = df.at[i, 'close']
+        stop_price = entry_price - (ABS_SL_USD / LEVERAGE)  # ✅ 절대 SL 적용
         raw_pct = (exit_price - entry_price) / entry_price * LEVERAGE
         net_pct = raw_pct - 2 * FEE_RATE
 
-        if net_pct >= 0.10 or net_pct >= -0.03:
+        if net_pct >= 0.10 or exit_price <= stop_price:  # ✅ 손절가는 고정 가격 기준
             profit = capital * net_pct
             capital += profit
             capital_log.append(capital)
@@ -135,15 +134,16 @@ for i in range(15, len(df)-1):
             wins += profit > 0
             losses += profit < 0
             print(f"{'✅' if profit > 0 else '❌'} LONG 종료 @{exit_price:.2f} | {df.at[i,'timestamp']}"
-                f" | 수익률(수수료 후): {net_pct:.2%}, 수익: ${profit:.2f}")
+                    f" | 수익률(수수료 후): {net_pct:.2%}, 수익: ${profit:.2f}")
             position = None
 
     elif position == "short":
         exit_price = df.at[i, 'close']
+        stop_price = entry_price + (ABS_SL_USD / LEVERAGE)  # ✅ 절대 SL 적용
         raw_pct = (entry_price - exit_price) / entry_price * LEVERAGE
         net_pct = raw_pct - 2 * FEE_RATE
 
-        if net_pct >= 0.10 or net_pct >= -0.03:
+        if net_pct >= 0.10 or exit_price >= stop_price:  # ✅ 손절가는 고정 가격 기준
             profit = capital * net_pct
             capital += profit
             capital_log.append(capital)
@@ -151,12 +151,11 @@ for i in range(15, len(df)-1):
             wins += profit > 0
             losses += profit < 0
             print(f"{'✅' if profit > 0 else '❌'} SHORT 종료 @{exit_price:.2f} | {df.at[i+1,'timestamp']}"
-                f" | 수익률(수수료 후): {net_pct:.2%}, 수익: ${profit:.2f}")
+                  f" | 수익률(수수료 후): {net_pct:.2%}, 수익: ${profit:.2f}")
             position = None
 
 # — 최종 결과
 total = wins + losses
-print(df)
 if total > 0:
     print(f"\n📊 총 트레이드: {total}")
     print(f"✅ 승: {wins}, ❌ 패: {losses}")
