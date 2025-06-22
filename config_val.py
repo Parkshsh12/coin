@@ -15,10 +15,7 @@ INTERVAL = "30"
 LIMIT = 1000
 SWING_N = 10
 LEVERAGE = 20
-FEE_RATE = 0.00075
-hold_amount = 0.0               # 보유한 개수
-target_hold_amount = 0.001      # 구매할 개수 
-trade_ended = False             # 트레이딩 종료 유무 판단
+position = None                 # 포지션 long or short
 
 session = HTTP(
     testnet=False,

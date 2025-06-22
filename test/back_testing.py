@@ -15,10 +15,10 @@ session = HTTP(
 
 # 백테스트 파라미터
 SYMBOL      = "BTCUSDT"
-INTERVAL    = "30"
+INTERVAL    = "5"
 LIMIT       = 1000
 SWING_N     = 10
-LEVERAGE    = 20
+LEVERAGE    = 25
 FEE_RATE    = 0.00075   # 0.075% per side
 
 def get_ohlcv(session, symbol, interval, limit=1000):
@@ -37,6 +37,14 @@ def get_ohlcv(session, symbol, interval, limit=1000):
 
 df = get_ohlcv(session, SYMBOL, INTERVAL, LIMIT)
 
+def calc_ema(df, span):
+    return df["close"].ewm(span=span, adjust=False).mean()
+
+def run_strategy(df):
+    df['MA50'] = df['close'].rolling(window=50).mean()
+    df['MA200'] = df['close'].rolling(window=200).mean()
+    df['MA50_diff'] = df['MA50'].diff()  # 50일선 기울기
+df = run_strategy(df)
 def smma(series, period):
     """Wilder's Smoothing (SMMA) - TradingView와 일치"""
     smma = [np.nan] * len(series)
@@ -103,30 +111,47 @@ position     = None
 entry_price  = 0
 wins = losses = 0
 trades = []
+liq_protect_buffer = 0.005  # 0.5% 여유
 for i in range(15, len(df)-1):
     price = df.at[i,'close']
     time  = df.at[i,'timestamp']
     div   = check_stoch_divergence(df, i)
 
+    prev = df.iloc[i]
     # — 진입
-    if position is None and div=="bull":
-        position    = "long"
-        entry_price = price
-        print(f"▶️ LONG 진입 @{entry_price:.2f} | {time}")
-
-    elif position is None and div=="bear":
-        position    = "short"
-        entry_price = price
-        print(f"▶️ SHORT 진입 @{entry_price:.2f} | {time}")
-
+    
+    if position is None:
+        if prev_ma50 < prev_ma200 and ma50 > ma200:
+            position = "long"
+            entry_price = price
+            entry_index = i
+            print(f"▶️ LONG 진입 @{price:.2f} | {df.at[i, 'timestamp']}")
+        elif prev_ma50 > prev_ma200 and ma50 < ma200:
+            position = "short"
+            entry_price = price
+            entry_index = i
+            print(f"▶️ SHORT 진입 @{price:.2f} | {df.at[i, 'timestamp']}")
     # — 청산 (다음 봉 종가)
     elif position == "long":
         exit_price = df.at[i, 'close']
-        stop_price = entry_price - (ABS_SL_USD / LEVERAGE)  # ✅ 절대 SL 적용
+
+        # 강제청산 조건
+        if df.at[i, 'low'] <= liq_protect_price:
+            print(f"🔒 강제청산 방지 스탑! LONG @ {liq_protect_price:.2f} | {time}")
+            loss_pct = -1 / LEVERAGE + liq_protect_buffer  # 남은 자본 보존
+            profit = capital * loss_pct
+            capital += profit
+            capital_log.append(capital)
+            trades.append(profit)
+            losses += 1
+            position = None
+            continue
+
         raw_pct = (exit_price - entry_price) / entry_price * LEVERAGE
         net_pct = raw_pct - 2 * FEE_RATE
 
-        if net_pct >= 0.10 or exit_price <= stop_price:  # ✅ 손절가는 고정 가격 기준
+        if net_pct >= 0.10 or net_pct >= -0.03:
+            net_pct
             profit = capital * net_pct
             capital += profit
             capital_log.append(capital)
@@ -134,16 +159,28 @@ for i in range(15, len(df)-1):
             wins += profit > 0
             losses += profit < 0
             print(f"{'✅' if profit > 0 else '❌'} LONG 종료 @{exit_price:.2f} | {df.at[i,'timestamp']}"
-                    f" | 수익률(수수료 후): {net_pct:.2%}, 수익: ${profit:.2f}")
+                  f" | 수익률: {net_pct:.2%}, 수익: ${profit:.2f}")
             position = None
 
     elif position == "short":
         exit_price = df.at[i, 'close']
-        stop_price = entry_price + (ABS_SL_USD / LEVERAGE)  # ✅ 절대 SL 적용
+
+        # 강제청산 조건
+        if df.at[i, 'high'] >= liq_protect_price:
+            print(f"💥 강제청산 방지! SHORT 포지션 강제 종료 @ {liq_protect_price:.2f} | {df.at[i, 'timestamp']}")
+            loss_pct = -1 / LEVERAGE + liq_protect_buffer  # 남은 자본 보존
+            profit = capital * loss_pct
+            capital += profit
+            capital_log.append(capital)
+            trades.append(profit)
+            losses += 1
+            position = None
+            continue
+
         raw_pct = (entry_price - exit_price) / entry_price * LEVERAGE
         net_pct = raw_pct - 2 * FEE_RATE
 
-        if net_pct >= 0.10 or exit_price >= stop_price:  # ✅ 손절가는 고정 가격 기준
+        if net_pct >= 0.10 or net_pct >= -0.03:
             profit = capital * net_pct
             capital += profit
             capital_log.append(capital)
@@ -151,7 +188,7 @@ for i in range(15, len(df)-1):
             wins += profit > 0
             losses += profit < 0
             print(f"{'✅' if profit > 0 else '❌'} SHORT 종료 @{exit_price:.2f} | {df.at[i+1,'timestamp']}"
-                  f" | 수익률(수수료 후): {net_pct:.2%}, 수익: ${profit:.2f}")
+                  f" | 수익률: {net_pct:.2%}, 수익: ${profit:.2f}")
             position = None
 
 # — 최종 결과

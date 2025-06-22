@@ -17,7 +17,7 @@ logging.getLogger("httpx").setLevel(logging.WARNING)
 async def bybit_private_ws():
     while True:
         try:
-            async with websockets.connect("wss://stream.bybit.com/v5/private", ping_interval=20, ping_timeout=10) as ws_private:
+            async with websockets.connect("wss://stream.bybit.com/v5/private") as ws_private:
                 logging.info("✅ Private WebSocket 연결됨")
                 await ws_private.send(send_auth())  # () 붙여야 됨!
                 await ws_private.send(json.dumps({
@@ -25,6 +25,19 @@ async def bybit_private_ws():
                     "args": ["execution", "wallet"]
                 }))
 
+                #private websocket 지속적으로 유지하기 위한 ping
+                async def send_ping():
+                    while True:
+                        ping_msg = {
+                            "op": "ping",
+                            "req_id": "ping_001"
+                        }
+                        await ws_private.send(json.dumps(ping_msg))
+                        print("🔁 Ping 전송")
+                        await asyncio.sleep(20)
+
+                asyncio.create_task(send_ping())
+            
                 while True:
                     data_rcv_strjson = await ws_private.recv()
                     rawdata = json.loads(data_rcv_strjson)
@@ -59,13 +72,11 @@ async def bybit_private_ws():
                             f"[[[[[[[[지갑]]]]]]]]\n"
                             f"[총 순자산]: {totalEquity}\n"
                             f"[주문가능잔액]: {totalAvailableBalance}\n"
-                            f"[USDT개수]: {walletBalance}"
                         )
                         logging.info( f"{str(datetime.datetime.now())}\n"
                             f"[[[[[[[[지갑]]]]]]]]\n"
                             f"[총 순자산]: {totalEquity}\n"
-                            f"[주문가능잔액]: {totalAvailableBalance}\n"
-                            f"[USDT개수]: {walletBalance}")
+                            f"[주문가능잔액]: {totalAvailableBalance}\n")
         except (websockets.ConnectionClosed, websockets.WebSocketException) as e:
             logging.info(f"❌ private WebSocket 연결 끊김 또는 예외 발생: {e}. 3초 후 재시도...")
             await notify(f"❌ private WebSocket 연결 끊김 또는 예외 발생: {e}. 3초 후 재시도...")
@@ -103,23 +114,22 @@ async def bybit_ws_client():
                             df = util.trading_utils.calc_stochastic_smma(df)
                             df = util.trading_utils.calc_swing_high_low(df, config_val.SWING_N)
                             signal = util.trading_utils.check_stoch_divergence(df)
-                            print(df)
+                            print(mark_price)
                             print(signal)
-                            if config_val.trade_ended == False and config_val.hold_amount < config_val.target_hold_amount:
-                                #order = await place_order_with_tp_sl("Buy")
-                                #config_val.hold_amount = order
-                                time.sleep(0.1)
+                            if config_val.position is None and signal == "bull":
+                                config_val.position = "LONG"
                                 
-                            # if config_val.trade_ended == False:
-                            #     position = config_val.session.get_positions(
-                            #         category="linear",
-                            #         symbol="BTCUSDT"
-                            #     )
-                            #     if position["result"]["list"][0]["size"] == '0':
-                            #         logging.info("+++++++++++++++포지션청산+++++++++++++++")
-                            #         config_val.trade_ended = True
-                            #     else :
-                            #         logging.info(f'현재시간 : {current_time}, 현재가 : {position["result"]["list"][0]["markPrice"]}, 미실현수익 : {position["result"]["list"][0]["unrealisedPnl"]}')
+                            elif config_val.position is None and signal == "bear":
+                                config_val.position = "SHORT"
+                                
+                                
+                            elif config_val.position == "LONG":
+                                config_val.position = None
+                                #LONG 포지션 익절 손절
+                                
+                            elif config_val.position == "SHORT":
+                                config_val.position = None
+                                #SHORT 포지션 익절 손절
                     except Exception as e_inner:
                         logging.info(f"⚠️ 내부 처리 중 예외 발생: {e_inner}")
                         await notify(

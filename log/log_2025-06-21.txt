@@ -1,0 +1,62 @@
+INFO:root:🚀 자동매매 시작
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:❌ private WebSocket 연결 끊김 또는 예외 발생: no close frame received or sent. 3초 후 재시도...
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:❌ private WebSocket 연결 끊김 또는 예외 발생: no close frame received or sent. 3초 후 재시도...
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:❌ private WebSocket 연결 끊김 또는 예외 발생: no close frame received or sent. 3초 후 재시도...
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:❌ private WebSocket 연결 끊김 또는 예외 발생: no close frame received or sent. 3초 후 재시도...
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:❌ private WebSocket 연결 끊김 또는 예외 발생: no close frame received or sent. 3초 후 재시도...
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:❌ private WebSocket 연결 끊김 또는 예외 발생: no close frame received or sent. 3초 후 재시도...
+INFO:root:✅ Private WebSocket 연결됨
+ERROR:pybit._http_manager:Too many visits. Exceeded the API Rate Limit. (ErrCode: 10006). Hit the API rate limit. Sleeping, then trying again. Request: https://api.bybit.com/v5/market/kline
+INFO:root:⚠️ 내부 처리 중 예외 발생: 'x-bapi-limit-reset-timestamp'
+INFO:root:❌ private WebSocket 연결 끊김 또는 예외 발생: no close frame received or sent. 3초 후 재시도...
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:❌ private WebSocket 연결 끊김 또는 예외 발생: no close frame received or sent. 3초 후 재시도...
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:❌ private WebSocket 연결 끊김 또는 예외 발생: no close frame received or sent. 3초 후 재시도...
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:❌ private WebSocket 연결 끊김 또는 예외 발생: no close frame received or sent. 3초 후 재시도...
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:❌ private WebSocket 연결 끊김 또는 예외 발생: no close frame received or sent. 3초 후 재시도...
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:❌ private WebSocket 연결 끊김 또는 예외 발생: no close frame received or sent. 3초 후 재시도...
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:2025-06-21 17:00:02.286199
+[[[[[[[[지갑]]]]]]]]
+[총 순자산]: 973.95010941
+[주문가능잔액]: -52.39619477
+[USDT개수]: 1990.41210222
+INFO:root:❌ private WebSocket 연결 끊김 또는 예외 발생: no close frame received or sent. 3초 후 재시도...
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:❌ private WebSocket 연결 끊김 또는 예외 발생: no close frame received or sent. 3초 후 재시도...
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:❌ private WebSocket 연결 끊김 또는 예외 발생: no close frame received or sent. 3초 후 재시도...
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:❌ private WebSocket 연결 끊김 또는 예외 발생: no close frame received or sent. 3초 후 재시도...
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:❌ private WebSocket 연결 끊김 또는 예외 발생: no close frame received or sent. 3초 후 재시도...
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:🚀 자동매매 시작
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:🚀 자동매매 시작
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:🚀 자동매매 시작
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:❌ private WebSocket 연결 끊김 또는 예외 발생: no close frame received or sent. 3초 후 재시도...
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:🚀 자동매매 시작
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:🚀 자동매매 시작
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:2025-06-21 19:15:01.297969
+[[[[[[[[지갑]]]]]]]]
+[총 순자산]: 100.4570267
+[주문가능잔액]: 90.01562681
+
+INFO:root:🚀 자동매매 시작
+INFO:root:✅ Private WebSocket 연결됨
