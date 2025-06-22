@@ -11,11 +11,11 @@ TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
 SYMBOL = "BTCUSDT"
-INTERVAL = "30"
+INTERVAL = "5"
 LIMIT = 1000
 SWING_N = 10
-LEVERAGE = 20
 position = None                 # 포지션 long or short
+target_hold_amount = 0.001
 
 session = HTTP(
     testnet=False,

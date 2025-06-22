@@ -78,5 +78,11 @@ def check_stoch_divergence(df):
         if curr == i:
             if df.at[curr, 'high'] > df.at[prev, 'high'] and df.at[curr, '%D'] < df.at[prev, '%D']:
                 return "bear"
-
     return None
+
+def ma_line(df):
+    df['MA_s'] = df['close'].rolling(window=50).mean()
+    df['MA_l'] = df['close'].rolling(window=200).mean()
+    df['MA200_diff'] = df['MA_l'].diff()
+    df['MA200_slope'] = df['MA200_diff'].rolling(window=200).mean()
+    return df

@@ -1,0 +1,920 @@
+INFO:root:🚀 자동매매 시작
+INFO:root:⚠️ 예상치 못한 예외: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028). 5초 후 재시도...
+INFO:root:⚠️ 예상치 못한 예외: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028). 5초 후 재시도...
+INFO:root:⚠️ 예상치 못한 예외: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028). 5초 후 재시도...
+INFO:root:⚠️ 예상치 못한 예외: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028). 5초 후 재시도...
+INFO:root:⚠️ 예상치 못한 예외: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028). 5초 후 재시도...
+INFO:root:⚠️ 예상치 못한 예외: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028). 5초 후 재시도...
+INFO:root:⚠️ 예상치 못한 예외: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028). 5초 후 재시도...
+INFO:root:⚠️ 예상치 못한 예외: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028). 5초 후 재시도...
+INFO:root:⚠️ 예상치 못한 예외: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028). 5초 후 재시도...
+INFO:root:⚠️ 예상치 못한 예외: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028). 5초 후 재시도...
+INFO:root:⚠️ 예상치 못한 예외: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028). 5초 후 재시도...
+INFO:root:⚠️ 예상치 못한 예외: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028). 5초 후 재시도...
+INFO:root:⚠️ 예상치 못한 예외: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028). 5초 후 재시도...
+INFO:root:⚠️ 예상치 못한 예외: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028). 5초 후 재시도...
+INFO:root:⚠️ 예상치 못한 예외: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028). 5초 후 재시도...
+INFO:root:⚠️ 예상치 못한 예외: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028). 5초 후 재시도...
+INFO:root:⚠️ 예상치 못한 예외: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028). 5초 후 재시도...
+INFO:root:⚠️ 예상치 못한 예외: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028). 5초 후 재시도...
+INFO:root:⚠️ 예상치 못한 예외: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028). 5초 후 재시도...
+INFO:root:⚠️ 예상치 못한 예외: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028). 5초 후 재시도...
+INFO:root:⚠️ 예상치 못한 예외: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028). 5초 후 재시도...
+INFO:root:⚠️ 예상치 못한 예외: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028). 5초 후 재시도...
+INFO:root:⚠️ 예상치 못한 예외: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028). 5초 후 재시도...
+INFO:root:⚠️ 예상치 못한 예외: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028). 5초 후 재시도...
+INFO:root:⚠️ 예상치 못한 예외: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028). 5초 후 재시도...
+INFO:root:⚠️ 예상치 못한 예외: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028). 5초 후 재시도...
+INFO:root:⚠️ 예상치 못한 예외: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028). 5초 후 재시도...
+INFO:root:⚠️ 예상치 못한 예외: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028). 5초 후 재시도...
+INFO:root:⚠️ 예상치 못한 예외: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028). 5초 후 재시도...
+INFO:root:⚠️ 예상치 못한 예외: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028). 5초 후 재시도...
+INFO:root:⚠️ 예상치 못한 예외: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028). 5초 후 재시도...
+INFO:root:⚠️ 예상치 못한 예외: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028). 5초 후 재시도...
+INFO:root:⚠️ 예상치 못한 예외: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028). 5초 후 재시도...
+INFO:root:⚠️ 예상치 못한 예외: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028). 5초 후 재시도...
+INFO:root:🚀 자동매매 시작
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:🚀 자동매매 시작
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:🚀 자동매매 시작
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:🚀 자동매매 시작
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:🚀 자동매매 시작
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:🚀 자동매매 시작
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:🚀 자동매매 시작
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:🚀 자동매매 시작
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:🚀 자동매매 시작
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:🚀 자동매매 시작
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:⚠️ 내부 처리 중 예외 발생: -1
+INFO:root:🚀 자동매매 시작
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:⚠️ 내부 처리 중 예외 발생: 'MA50'
+INFO:root:🚀 자동매매 시작
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:🚀 자동매매 시작
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:🚀 자동매매 시작
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:🚀 자동매매 시작
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:🚀 자동매매 시작
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:🚀 자동매매 시작
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:🚀 자동매매 시작
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:🚀 자동매매 시작
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:🚀 자동매매 시작
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-5' coro=<bybit_private_ws.<locals>.send_ping() done, defined at /Users/parkseunghyun/trading/coin/bybit_trade.py:32> exception=OSError(5, 'Input/output error')>
+Traceback (most recent call last):
+  File "/Users/parkseunghyun/trading/coin/bybit_trade.py", line 39, in send_ping
+    print("🔁 Ping 전송")
+    ~~~~~^^^^^^^^^^^^^^^^
+OSError: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:❌ private WebSocket 연결 끊김 또는 예외 발생: no close frame received or sent. 3초 후 재시도...
+INFO:root:✅ Private WebSocket 연결됨
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-215' coro=<bybit_private_ws.<locals>.send_ping() done, defined at /Users/parkseunghyun/trading/coin/bybit_trade.py:32> exception=OSError(5, 'Input/output error')>
+Traceback (most recent call last):
+  File "/Users/parkseunghyun/trading/coin/bybit_trade.py", line 39, in send_ping
+    print("🔁 Ping 전송")
+    ~~~~~^^^^^^^^^^^^^^^^
+OSError: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:❌ private WebSocket 연결 끊김 또는 예외 발생: no close frame received or sent. 3초 후 재시도...
+INFO:root:✅ Private WebSocket 연결됨
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-405' coro=<bybit_private_ws.<locals>.send_ping() done, defined at /Users/parkseunghyun/trading/coin/bybit_trade.py:32> exception=OSError(5, 'Input/output error')>
+Traceback (most recent call last):
+  File "/Users/parkseunghyun/trading/coin/bybit_trade.py", line 39, in send_ping
+    print("🔁 Ping 전송")
+    ~~~~~^^^^^^^^^^^^^^^^
+OSError: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:❌ private WebSocket 연결 끊김 또는 예외 발생: no close frame received or sent. 3초 후 재시도...
+INFO:root:✅ Private WebSocket 연결됨
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-546' coro=<bybit_private_ws.<locals>.send_ping() done, defined at /Users/parkseunghyun/trading/coin/bybit_trade.py:32> exception=OSError(5, 'Input/output error')>
+Traceback (most recent call last):
+  File "/Users/parkseunghyun/trading/coin/bybit_trade.py", line 39, in send_ping
+    print("🔁 Ping 전송")
+    ~~~~~^^^^^^^^^^^^^^^^
+OSError: [Errno 5] Input/output error
+INFO:root:🚀 자동매매 시작
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:⚠️ 내부 처리 중 예외 발생: 'MA200'
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: 'MA200'
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: 'MA200'
+INFO:root:⚠️ 내부 처리 중 예외 발생: 'MA200'
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: 'MA200'
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: 'MA200'
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: 'MA200'
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: 'MA200'
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: 'MA200'
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: 'MA200'
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: 'MA200'
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: 'MA200'
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: 'MA200'
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: 'MA200'
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: 'MA200'
+INFO:root:⚠️ 내부 처리 중 예외 발생: 'MA200'
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: 'MA200'
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: 'MA200'
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: 'MA200'
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: 'MA200'
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: 'MA200'
+INFO:root:⚠️ 내부 처리 중 예외 발생: 'MA200'
+INFO:root:⚠️ 내부 처리 중 예외 발생: 'MA200'
+INFO:root:⚠️ 내부 처리 중 예외 발생: 'MA200'
+INFO:root:⚠️ 내부 처리 중 예외 발생: 'MA200'
+INFO:root:⚠️ 내부 처리 중 예외 발생: 'MA200'
+INFO:root:⚠️ 내부 처리 중 예외 발생: 'MA200'
+INFO:root:⚠️ 내부 처리 중 예외 발생: 'MA200'
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: 'MA200'
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: 'MA200'
+INFO:root:⚠️ 내부 처리 중 예외 발생: 'MA200'
+INFO:root:⚠️ 내부 처리 중 예외 발생: 'MA200'
+INFO:root:⚠️ 내부 처리 중 예외 발생: 'MA200'
+INFO:root:⚠️ 내부 처리 중 예외 발생: 'MA200'
+INFO:root:⚠️ 내부 처리 중 예외 발생: 'MA200'
+INFO:root:⚠️ 내부 처리 중 예외 발생: 'MA200'
+INFO:root:⚠️ 내부 처리 중 예외 발생: 'MA200'
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:🚀 자동매매 시작
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:🚀 자동매매 시작
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:🚀 자동매매 시작
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:✅ Private WebSocket 연결됨
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error
+INFO:root:⚠️ 내부 처리 중 예외 발생: [Errno 5] Input/output error

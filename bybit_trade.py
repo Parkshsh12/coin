@@ -1,3 +1,5 @@
+import ssl
+import certifi
 import asyncio
 import websockets
 import datetime
@@ -13,11 +15,12 @@ log_date = datetime.datetime.now().strftime("%Y-%m-%d")
 log_path = f"log/log_{log_date}.txt"
 logging.basicConfig(filename=log_path, level=logging.INFO, encoding="utf-8")
 logging.getLogger("httpx").setLevel(logging.WARNING)
+ssl_context = ssl.create_default_context(cafile=certifi.where())
 
 async def bybit_private_ws():
     while True:
         try:
-            async with websockets.connect("wss://stream.bybit.com/v5/private") as ws_private:
+            async with websockets.connect("wss://stream.bybit.com/v5/private", ssl=ssl_context) as ws_private:
                 logging.info("✅ Private WebSocket 연결됨")
                 await ws_private.send(send_auth())  # () 붙여야 됨!
                 await ws_private.send(json.dumps({
@@ -91,7 +94,7 @@ async def bybit_ws_client():
     url = "wss://stream.bybit.com/v5/public/linear"
     while True:
         try:
-            async with websockets.connect(url, ping_interval=20, ping_timeout=10) as ws:
+            async with websockets.connect(url, ssl=ssl_context) as ws:
                 subscribe_msg = {
                     "op": "subscribe",
                     "args": ["tickers.BTCUSDT"]
@@ -101,29 +104,39 @@ async def bybit_ws_client():
                     try:
                         data = await ws.recv()
                         msg = json.loads(data)
-                        if 'ts' in msg:
-                            current_time = datetime.datetime.fromtimestamp(msg['ts'] / 1000)
-                        
                         # 비트코인 현재가
                         if msg.get("topic") == "tickers.BTCUSDT":
                             mark_price = msg["data"].get("markPrice")
                         
                         if mark_price is not None:
                             #매매 조건
+
                             df = util.trading_utils.get_ohlcv(config_val.session, config_val.SYMBOL, config_val.INTERVAL, config_val.LIMIT)
-                            df = util.trading_utils.calc_stochastic_smma(df)
-                            df = util.trading_utils.calc_swing_high_low(df, config_val.SWING_N)
-                            signal = util.trading_utils.check_stoch_divergence(df)
-                            print(mark_price)
-                            print(signal)
-                            if config_val.position is None and signal == "bull":
+                            df = util.trading_utils.ma_line(df)
+                            price = df.iloc[-1]['close']
+                            ma50 = df.iloc[-2]['MA_s']
+                            ma200 = df.iloc[-2]['MA_l']
+                            prev_ma50 = df.iloc[-3]['MA_s']
+                            prev_ma200 = df.iloc[-3]['MA_l']
+                            ma200_diff = df['MA200_diff'].head(30)
+                            ma200_slope = df['MA200_slope']
+                            print(df)
+                            print(f"diff:{ma200_diff}, slope:{ma200_slope}")
+                            print(f"ma50:{ma50}, ma200:{ma200}, prev_ma50:{prev_ma50}, prev_ma200:{prev_ma200}")
+                            if config_val.position is None and prev_ma50 < prev_ma200 and ma50 > ma200:
+                                # order = place_order_with_tp_sl("Buy")
                                 config_val.position = "LONG"
                                 
-                            elif config_val.position is None and signal == "bear":
+                            elif config_val.position is None and prev_ma50 > prev_ma200 and ma50 < ma200 == "bear":
+                                # order = place_order_with_tp_sl("Sell")
                                 config_val.position = "SHORT"
                                 
-                                
                             elif config_val.position == "LONG":
+                                position = config_val.session.get_positions(category="linear", symbol="BTCUSDT")
+                                pos_data = position['result']['list'][0]
+                                entry_price = pos_data["entryPrice"]
+                                # if entry_price <= ma50:
+                                    
                                 config_val.position = None
                                 #LONG 포지션 익절 손절
                                 
