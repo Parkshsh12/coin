@@ -14,8 +14,8 @@ SYMBOL = "BTCUSDT"
 INTERVAL = "5"
 LIMIT = 1000
 SWING_N = 10
-position = None                 # 포지션 long or short
-target_hold_amount = 0.001
+position = {"long": 0, "short": 0}
+entry_price = {"long": 0.0, "short": 0.0}
 
 session = HTTP(
     testnet=False,

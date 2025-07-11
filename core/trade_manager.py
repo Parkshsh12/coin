@@ -1,59 +1,50 @@
 import time
 import datetime
 import logging
-from config_val import session, target_hold_amount
+from config_val import session, position, entry_price, SYMBOL
 from core.auth import notify
 
-async def place_order_with_tp_sl(order_side, sl_perc=0.005):
-    order = session.place_order(
-        category="linear",
-        symbol="BTCUSDT",
-        side=order_side,
-        orderType="Market",
-        qty=str(target_hold_amount),
-        timeInForce="GTC",
-    )
-    time.sleep(1)
-    positions = session.get_positions(category="linear", symbol="BTCUSDT")
-    pos = positions['result']['list'][0]
-    base_price = float(pos['avgPrice'])  
-    if order_side == "Buy":
-        stop_loss = round(base_price * (1 - sl_perc), 2)
-    else:
-        stop_loss = round(base_price * (1 + sl_perc), 2)
+# 현재 포지션 조회
+def update_position():
+    global position, entry_price
+    pos_data = session.get_positions(category="linear", symbol=SYMBOL)["result"]["list"]
+    for p in pos_data:
+        side = p["side"].lower()
+        size = float(p["size"])
+        entry = float(p["entryPrice"]) if size > 0 else 0.0
+        if side == "buy":
+            position["long"] = size
+            entry_price["long"] = entry
+        elif side == "sell":
+            position["short"] = size
+            entry_price["short"] = entry
 
-    session.set_trading_stop(
+# 진입
+def open_position(side, qty):
+    session.place_order(
         category="linear",
-        symbol="BTCUSDT",
-        stopLoss=str(stop_loss)
-    )
-    hold_amount = float(pos["size"])
-    side = "LONG" if pos["side"] == "Buy" else "SHORT"
-    await notify(
-        f"{datetime.datetime.now()}\n"
-        f"[[[[[[[포지션진입]]]]]]]\n"
-        f"[진입가]:{base_price}\n"
-        f"[SL]:{stop_loss}\n"
-        f"[SIDE]:{side}\n"
-        f"[수량]:{pos['size']}\n"
-    )
-    logging.info(f"{datetime.datetime.now()}\n"
-        f"[[[[[[[포지션진입]]]]]]]\n"
-        f"[진입가]:{base_price}, SL:{stop_loss}, SIDE:{side}, 수량:{pos['size']}")
-    return hold_amount
-
-def close_position(position_side):
-
-    side = "Sell" if position_side == "Buy" else "Buy"
-    logging.info(f"시장가 {side}로 기존 포지션 청산 시도")
-    order = session.place_order(
-        category="linear",
-        symbol="BTCUSDT",
+        symbol=SYMBOL,
         side=side,
-        orderType="Market",
-        qty=str(target_hold_amount),
-        reduceOnly=True,
-        timeInForce="GoodTillCancel"
+        order_type="Market",
+        qty=qty,
+        time_in_force="IOC"
     )
-    logging.info(f"청산 주문결과: {order}")
-    return order
+    print(f"→ {side} 진입: {qty}")
+    notify(f"→ {side} 진입: {qty}")
+    update_position()
+
+# 청산
+def close_position(side):
+    qty = position[side.lower()]
+    if qty > 0:
+        session.place_order(
+            category="linear",
+            symbol=SYMBOL,
+            side="Sell" if side == "long" else "Buy",
+            order_type="Market",
+            qty=qty,
+            reduce_only=True,
+            time_in_force="IOC"
+        )
+        print(f"× {side.upper()} 청산: {qty}")
+        update_position()

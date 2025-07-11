@@ -113,36 +113,7 @@ async def bybit_ws_client():
 
                             df = util.trading_utils.get_ohlcv(config_val.session, config_val.SYMBOL, config_val.INTERVAL, config_val.LIMIT)
                             df = util.trading_utils.ma_line(df)
-                            price = df.iloc[-1]['close']
-                            ma50 = df.iloc[-2]['MA_s']
-                            ma200 = df.iloc[-2]['MA_l']
-                            prev_ma50 = df.iloc[-3]['MA_s']
-                            prev_ma200 = df.iloc[-3]['MA_l']
-                            ma200_diff = df['MA200_diff'].head(30)
-                            ma200_slope = df['MA200_slope']
-                            print(df)
-                            print(f"diff:{ma200_diff}, slope:{ma200_slope}")
-                            print(f"ma50:{ma50}, ma200:{ma200}, prev_ma50:{prev_ma50}, prev_ma200:{prev_ma200}")
-                            if config_val.position is None and prev_ma50 < prev_ma200 and ma50 > ma200:
-                                # order = place_order_with_tp_sl("Buy")
-                                config_val.position = "LONG"
-                                
-                            elif config_val.position is None and prev_ma50 > prev_ma200 and ma50 < ma200 == "bear":
-                                # order = place_order_with_tp_sl("Sell")
-                                config_val.position = "SHORT"
-                                
-                            elif config_val.position == "LONG":
-                                position = config_val.session.get_positions(category="linear", symbol="BTCUSDT")
-                                pos_data = position['result']['list'][0]
-                                entry_price = pos_data["entryPrice"]
-                                # if entry_price <= ma50:
-                                    
-                                config_val.position = None
-                                #LONG 포지션 익절 손절
-                                
-                            elif config_val.position == "SHORT":
-                                config_val.position = None
-                                #SHORT 포지션 익절 손절
+                            
                     except Exception as e_inner:
                         logging.info(f"⚠️ 내부 처리 중 예외 발생: {e_inner}")
                         await notify(
