@@ -10,12 +10,14 @@ api_secret = os.getenv("API_SECRET")
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
+LEVERAGE = 25
 SYMBOL = "BTCUSDT"
 INTERVAL = "5"
 LIMIT = 1000
 SWING_N = 10
 position = {"long": 0, "short": 0}
 entry_price = {"long": 0.0, "short": 0.0}
+qty = 0.001
 
 session = HTTP(
     testnet=False,

@@ -8,14 +8,30 @@ import json
 import logging
 import config_val
 from core.auth import notify, send_auth
-from core.trade_manager import place_order_with_tp_sl
+from core.trade_manager import open_position
 import util.trading_utils
+from collections import deque
 
 log_date = datetime.datetime.now().strftime("%Y-%m-%d")
 log_path = f"log/log_{log_date}.txt"
 logging.basicConfig(filename=log_path, level=logging.INFO, encoding="utf-8")
 logging.getLogger("httpx").setLevel(logging.WARNING)
 ssl_context = ssl.create_default_context(cafile=certifi.where())
+
+global_price = {"mark_price": None}
+ohlcv_cache = {"data": None, "last_updated": 0}
+price_buffer = deque(maxlen=20)
+ema_buffer = deque(maxlen=5)
+
+# OHLCV 캐시 함수
+def cached_ohlcv(session, symbol, interval, limit=200, ttl=10):
+    now = time.time()
+    if ohlcv_cache["data"] is None or now - ohlcv_cache["last_updated"] > ttl:
+        df = util.trading_utils.get_ohlcv(session, symbol, interval, limit)
+        df = util.trading_utils.ma_line(df)
+        ohlcv_cache["data"] = df
+        ohlcv_cache["last_updated"] = now
+    return ohlcv_cache["data"]
 
 async def bybit_private_ws():
     while True:
@@ -92,52 +108,70 @@ async def bybit_private_ws():
 
 async def bybit_ws_client():
     url = "wss://stream.bybit.com/v5/public/linear"
+    subscribe_msg = {
+        "op": "subscribe",
+        "args": ["tickers.BTCUSDT"]
+    }
+
     while True:
         try:
             async with websockets.connect(url, ssl=ssl_context) as ws:
-                subscribe_msg = {
-                    "op": "subscribe",
-                    "args": ["tickers.BTCUSDT"]
-                }
                 await ws.send(json.dumps(subscribe_msg))
-                while True:
-                    try:
-                        data = await ws.recv()
-                        msg = json.loads(data)
-                        # 비트코인 현재가
-                        if msg.get("topic") == "tickers.BTCUSDT":
-                            mark_price = msg["data"].get("markPrice")
-                        
-                        if mark_price is not None:
-                            #매매 조건
+                logging.info("✅ WebSocket 연결 및 구독 완료")
 
-                            df = util.trading_utils.get_ohlcv(config_val.session, config_val.SYMBOL, config_val.INTERVAL, config_val.LIMIT)
-                            df = util.trading_utils.ma_line(df)
-                            
-                    except Exception as e_inner:
-                        logging.info(f"⚠️ 내부 처리 중 예외 발생: {e_inner}")
-                        await notify(
-                            f"{str(datetime.datetime.now())}⚠️\n"
-                            f"내부 처리 중 예외 발생: {e_inner}")
-                        break
-                   
-        except (websockets.ConnectionClosed, websockets.WebSocketException) as e:
-                logging.info(f"❌ public WebSocket 연결 끊김 또는 예외 발생: {e}. 3초 후 재시도...")
-                await notify(f"❌ public WebSocket 연결 끊김 또는 예외 발생: {e}. 3초 후 재시도...")
-                await asyncio.sleep(3)
+                while True:
+                    data = await ws.recv()
+                    msg = json.loads(data)
+
+                    mark_price = msg.get("data", {}).get("markPrice")
+                    if mark_price:
+                        global_price["mark_price"] = float(mark_price)
 
         except Exception as e:
-            logging.info(f"⚠️ 예상치 못한 예외: {e}. 5초 후 재시도...")
-            await notify(f"⚠️ public WebSocket 예상치 못한 예외: {e}. 5초 후 재시도...")
-            await asyncio.sleep(5)
+            logging.warning(f"❌ WebSocket 예외: {e}")
+            await asyncio.sleep(3)
                 
+# ✅ 전략 로직 실행 루프
+async def strategy_loop():
+    while True:
+        price = global_price["mark_price"]
+        if price:
+            try:
+                df = cached_ohlcv(config_val.session, config_val.SYMBOL, config_val.INTERVAL, config_val.LIMIT)
+                
+                # 전략 실행 조건 예시
+                ema_now = df['ema'].iloc[-1]
+                ema_prev = df['ema'].iloc[-2]
+                bb_upper = df['bb_upper'].iloc[-1]
+                bb_lower = df['bb_lower'].iloc[-1]
+                prev_close = df['close'].iloc[-2]
+
+                # 전략 조건
+                trend_reversal = (
+                    ema_now < ema_prev
+                    or (prev_close > bb_upper and price < bb_upper)
+                    or (prev_close < bb_lower and price > bb_lower)
+                )
+
+                if trend_reversal:
+                    logging.info("📉 추세 반전 감지!")
+                    # 여기에 진입/청산 로직 호출
+                    # place_order(), close_position() 등
+
+            except Exception as e:
+                logging.error(f"❗ 전략 실행 중 오류: {e}")
+                await notify(f"❗ 전략 실행 중 오류: {e}")
+
+        await asyncio.sleep(1)
+        
 async def main():
     logging.info("🚀 자동매매 시작")
     await notify(f"{str(datetime.datetime.now())}\n"
                  f"+++++매매시작+++++")
     await asyncio.gather(
         bybit_private_ws(),
-        bybit_ws_client()
+        bybit_ws_client(),
+        strategy_loop()
     )
 
 if __name__ == "__main__":

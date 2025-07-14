@@ -1,7 +1,7 @@
 import time
 import datetime
 import logging
-from config_val import session, position, entry_price, SYMBOL
+from config_val import session, position, entry_price, SYMBOL, LEVERAGE
 from core.auth import notify
 
 # 현재 포지션 조회
@@ -48,3 +48,9 @@ def close_position(side):
         )
         print(f"× {side.upper()} 청산: {qty}")
         update_position()
+
+# 수익률 계산
+def calculate_pnl(price):
+    long_pnl = (price - entry_price["long"]) / entry_price["long"] * LEVERAGE if position["long"] > 0 else 0
+    short_pnl = (entry_price["short"] - price) / entry_price["short"] * LEVERAGE if position["short"] > 0 else 0
+    return long_pnl, short_pnl
