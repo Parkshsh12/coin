@@ -92,10 +92,21 @@ def ma_line(df):
 def get_ema(values, span=5):
     return pd.Series(values).ewm(span=span, adjust=False).mean().iloc[-1]
 
-def get_bbands(values):
+# 볼린저 밴드
+# def get_bbands(values):
+#     s = pd.Series(values)
+#     mid = s.mean()
+#     std = s.std()
+#     upper = mid + bb_std * std
+#     lower = mid - bb_std * std
+#     return upper, lower
+
+def get_bbands(values, period=20, num_std=2):
     s = pd.Series(values)
-    mid = s.mean()
-    std = s.std()
-    upper = mid + bb_std * std
-    lower = mid - bb_std * std
-    return upper, lower
+    sma = s.rolling(window=period).mean()
+    std = s.rolling(window=period).std()
+
+    upper = sma + num_std * std
+    lower = sma - num_std * std
+
+    return upper.iloc[-1], lower.iloc[-1]
