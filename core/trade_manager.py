@@ -36,7 +36,6 @@ def update_position():
 
 # 진입
 def open_position(side, qty, index):
-    print(side)
     session.place_order(
         category="linear",
         symbol=SYMBOL,
