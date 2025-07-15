@@ -11,17 +11,15 @@ from core.auth import notify
 def update_position():
     global position, entry_price
     try:
+        print(f"포지션 : {position}  평단가 : {entry_price}")
         position["long"] = 0
         position["short"] = 0
         entry_price["long"] = 0.0
         entry_price["short"] = 0.0
         
         pos_data = session.get_positions(category="linear", symbol=SYMBOL)["result"]["list"]
-        print(pos_data)
-        print(position)
         for p in pos_data:
             side = p.get("side", "").lower()
-            print(f"{p.get('side', '').lower()} sideside")
             size = float(p["size"])
             entry = float(p["avgPrice"]) if size > 0 else 0.0
 

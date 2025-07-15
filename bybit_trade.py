@@ -11,7 +11,7 @@ import json
 import logging
 import config_val
 from core.auth import notify, send_auth
-from core.trade_manager import open_position, update_position, close_position
+from core.trade_manager import open_position, update_position, close_position, calculate_pnl
 import util.trading_utils
 from collections import deque
 
@@ -179,8 +179,7 @@ async def strategy_loop():
                     continue
 
                 # 수익률 계산
-                long_pnl = ((price - config_val.entry_price["long"]) / config_val.entry_price["long"]) * config_val.LEVERAGE if config_val.position["long"] > 0 else 0
-                short_pnl = ((config_val.entry_price["short"] - price) / config_val.entry_price["short"]) * config_val.LEVERAGE if config_val.position["short"] > 0 else 0
+                long_pnl, short_pnl = calculate_pnl(price)
 
                 # 추세 반전 조건
                 trend_reversal = (
@@ -190,11 +189,11 @@ async def strategy_loop():
                 )
 
                 if trend_reversal:
-                    if long_pnl > 0:
+                    if long_pnl > 5:
                         close_position("long", 1)
                         open_position("Sell", config_val.qty * 3, 2)
                         logging.info("🔁 롱 익절 + 숏 물타기")
-                    elif short_pnl > 0:
+                    elif short_pnl > 5:
                         close_position("short", 2)
                         open_position("Buy", config_val.qty * 3, 1)
                         logging.info("🔁 숏 익절 + 롱 물타기")
