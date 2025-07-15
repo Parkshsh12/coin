@@ -67,6 +67,6 @@ def close_position(side, idx):
 
 # 수익률 계산
 def calculate_pnl(price):
-    long_pnl = (price - entry_price["long"]) / entry_price["long"] * LEVERAGE if position["long"] > 0 else 0
-    short_pnl = (entry_price["short"] - price) / entry_price["short"] * LEVERAGE if position["short"] > 0 else 0
+    long_pnl = (price - entry_price["long"]) / entry_price["long"] * LEVERAGE * 100 if position["long"] > 0 else 0
+    short_pnl = (entry_price["short"] - price) / entry_price["short"] * LEVERAGE * 100 if position["short"] > 0 else 0
     return long_pnl, short_pnl
