@@ -82,12 +82,13 @@ def get_ohlcv(session, symbol, interval, limit):
 #                 return "bear"
 #     return None
 
-# def ma_line(df):
-#     df['MA_s'] = df['close'].rolling(window=50).mean()
-#     df['MA_l'] = df['close'].rolling(window=200).mean()
-#     df['MA200_diff'] = df['MA_l'].diff()
-#     df['MA200_slope'] = df['MA200_diff'].rolling(window=200).mean()
-#     return df
+def ma_line(df):
+    df['MA_s'] = df['close'].rolling(window=50).mean()
+    df['MA_l'] = df['close'].rolling(window=200).mean()
+    df['MA200_diff'] = df['MA_l'].diff()
+    df['MA200_slope'] = df['MA200_diff'].rolling(window=200).mean()
+    return df
+
 def get_ema(values, span=5):
     return pd.Series(values).ewm(span=span, adjust=False).mean().iloc[-1]
 

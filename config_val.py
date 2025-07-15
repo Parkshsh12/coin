@@ -20,7 +20,7 @@ entry_price = {"long": 0.0, "short": 0.0}
 qty = 0.001
 
 session = HTTP(
-    testnet=False,
+    testnet=True,
     api_key=api_key,
     api_secret=api_secret
 )

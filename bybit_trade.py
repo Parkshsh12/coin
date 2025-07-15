@@ -1,4 +1,7 @@
 import ssl
+import os
+import sys
+sys.path.append(os.getcwd())
 import certifi
 import asyncio
 import websockets
@@ -8,7 +11,7 @@ import json
 import logging
 import config_val
 from core.auth import notify, send_auth
-from core.trade_manager import open_position
+from core.trade_manager import open_position, update_position, close_position
 import util.trading_utils
 from collections import deque
 
@@ -18,7 +21,7 @@ logging.basicConfig(filename=log_path, level=logging.INFO, encoding="utf-8")
 logging.getLogger("httpx").setLevel(logging.WARNING)
 ssl_context = ssl.create_default_context(cafile=certifi.where())
 
-global_price = {"mark_price": None}
+global_price = {"last_price": None}
 ohlcv_cache = {"data": None, "last_updated": 0}
 price_buffer = deque(maxlen=20)
 ema_buffer = deque(maxlen=5)
@@ -26,9 +29,11 @@ ema_buffer = deque(maxlen=5)
 # OHLCV 캐시 함수
 def cached_ohlcv(session, symbol, interval, limit=200, ttl=10):
     now = time.time()
+    print(1)
     if ohlcv_cache["data"] is None or now - ohlcv_cache["last_updated"] > ttl:
+        print(11)
         df = util.trading_utils.get_ohlcv(session, symbol, interval, limit)
-        df = util.trading_utils.ma_line(df)
+        print(111)
         ohlcv_cache["data"] = df
         ohlcv_cache["last_updated"] = now
     return ohlcv_cache["data"]
@@ -36,7 +41,7 @@ def cached_ohlcv(session, symbol, interval, limit=200, ttl=10):
 async def bybit_private_ws():
     while True:
         try:
-            async with websockets.connect("wss://stream.bybit.com/v5/private", ssl=ssl_context) as ws_private:
+            async with websockets.connect("wss://stream-testnet.bybit.com/v5/private", ssl=ssl_context) as ws_private:
                 logging.info("✅ Private WebSocket 연결됨")
                 await ws_private.send(send_auth())  # () 붙여야 됨!
                 await ws_private.send(json.dumps({
@@ -52,7 +57,7 @@ async def bybit_private_ws():
                             "req_id": "ping_001"
                         }
                         await ws_private.send(json.dumps(ping_msg))
-                        print("🔁 Ping 전송")
+                        print("🔁 private Ping 전송")
                         await asyncio.sleep(20)
 
                 asyncio.create_task(send_ping())
@@ -107,7 +112,7 @@ async def bybit_private_ws():
             await asyncio.sleep(5)
 
 async def bybit_ws_client():
-    url = "wss://stream.bybit.com/v5/public/linear"
+    url = "wss://stream-testnet.bybit.com/v5/public/linear"
     subscribe_msg = {
         "op": "subscribe",
         "args": ["tickers.BTCUSDT"]
@@ -119,44 +124,94 @@ async def bybit_ws_client():
                 await ws.send(json.dumps(subscribe_msg))
                 logging.info("✅ WebSocket 연결 및 구독 완료")
 
+                #private websocket 지속적으로 유지하기 위한 ping
+                async def send_ping():
+                    while True:
+                        ping_msg = {
+                            "op": "ping",
+                            "req_id": "ping_002"
+                        }
+                        await ws.send(json.dumps(ping_msg))
+                        print("🔁 public Ping 전송")
+                        await asyncio.sleep(20)
+
+                asyncio.create_task(send_ping())
+                
                 while True:
                     data = await ws.recv()
                     msg = json.loads(data)
 
-                    mark_price = msg.get("data", {}).get("markPrice")
-                    if mark_price:
-                        global_price["mark_price"] = float(mark_price)
-
+                    last_price = msg.get("data", {}).get("lastPrice")
+                    if last_price:
+                        global_price["last_price"] = float(last_price)
+                        print(last_price)
         except Exception as e:
             logging.warning(f"❌ WebSocket 예외: {e}")
             await asyncio.sleep(3)
                 
-# ✅ 전략 로직 실행 루프
+# 전략 로직 실행 루프 (on_ticker 통합 버전)
 async def strategy_loop():
     while True:
-        price = global_price["mark_price"]
+        price = global_price["last_price"]
         if price:
             try:
-                df = cached_ohlcv(config_val.session, config_val.SYMBOL, config_val.INTERVAL, config_val.LIMIT)
+                price_buffer.append(price)
                 
-                # 전략 실행 조건 예시
-                ema_now = df['ema'].iloc[-1]
-                ema_prev = df['ema'].iloc[-2]
-                bb_upper = df['bb_upper'].iloc[-1]
-                bb_lower = df['bb_lower'].iloc[-1]
-                prev_close = df['close'].iloc[-2]
+                ema_now = util.trading_utils.get_ema(price_buffer, span=5)
+                ema_buffer.append(ema_now)
 
-                # 전략 조건
+                if len(price_buffer) < 20 or len(ema_buffer) < 3:
+                    await asyncio.sleep(1)
+                    continue
+
+                ema_prev = ema_buffer[-2]
+                bb_upper, bb_lower = util.trading_utils.get_bbands(price_buffer)
+                prev_price = price_buffer[-2]
+
+                # 포지션/진입가 업데이트
+                update_position()
+                # 초기 진입
+                if config_val.position["long"] == 0 and config_val.position["short"] == 0:
+                    open_position("Buy", config_val.qty, 1)
+                    open_position("Sell", config_val.qty, 2)
+                    logging.info("🟢 초기 롱숏 동시 진입")
+                    await asyncio.sleep(1)
+                    continue
+
+                # 수익률 계산
+                long_pnl = ((price - config_val.entry_price["long"]) / config_val.entry_price["long"]) * config_val.LEVERAGE if config_val.position["long"] > 0 else 0
+                short_pnl = ((config_val.entry_price["short"] - price) / config_val.entry_price["short"]) * config_val.LEVERAGE if config_val.position["short"] > 0 else 0
+
+                # 추세 반전 조건
                 trend_reversal = (
                     ema_now < ema_prev
-                    or (prev_close > bb_upper and price < bb_upper)
-                    or (prev_close < bb_lower and price > bb_lower)
+                    or (prev_price > bb_upper and price < bb_upper)
+                    or (prev_price < bb_lower and price > bb_lower)
                 )
 
                 if trend_reversal:
-                    logging.info("📉 추세 반전 감지!")
-                    # 여기에 진입/청산 로직 호출
-                    # place_order(), close_position() 등
+                    if long_pnl > 0:
+                        close_position("long", 1)
+                        open_position("Sell", config_val.qty * 3, 2)
+                        logging.info("🔁 롱 익절 + 숏 물타기")
+                    elif short_pnl > 0:
+                        close_position("short", 2)
+                        open_position("Buy", config_val.qty * 3, 1)
+                        logging.info("🔁 숏 익절 + 롱 물타기")
+
+                # 손절 조건
+                if config_val.position["long"] >= config_val.qty * 3 and long_pnl < -5:
+                    close_position("long", 1)
+                    open_position("Sell", config_val.qty, 2)
+                    logging.info("💥 롱 손절 + 숏 복구 진입")
+
+                elif config_val.position["short"] >= config_val.qty * 3 and short_pnl < -5:
+                    close_position("short", 2)
+                    open_position("Buy", config_val.qty, 1)
+                    logging.info("💥 숏 손절 + 롱 복구 진입")
+
+                # 실시간 로그 출력
+                logging.info(f"📊 Price: {price:.1f} | EMA: {ema_now:.1f} | BB↑: {bb_upper:.1f} ↓: {bb_lower:.1f} | 롱PnL: {long_pnl:.2f}% | 숏PnL: {short_pnl:.2f}%")
 
             except Exception as e:
                 logging.error(f"❗ 전략 실행 중 오류: {e}")
