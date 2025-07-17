@@ -89,24 +89,27 @@ def ma_line(df):
     df['MA200_slope'] = df['MA200_diff'].rolling(window=200).mean()
     return df
 
-def get_ema(values, span=5):
-    return pd.Series(values).ewm(span=span, adjust=False).mean().iloc[-1]
+# 이평선
+def get_ema_df(df, span=20):
+    df["ema"] = df["close"].ewm(span=span, adjust=False).mean()
+    return df
 
-# 볼린저 밴드
-# def get_bbands(values):
-#     s = pd.Series(values)
-#     mid = s.mean()
-#     std = s.std()
-#     upper = mid + bb_std * std
-#     lower = mid - bb_std * std
-#     return upper, lower
+# 볼린저밴드
+def get_bbands_df(df, period=20, num_std=2):
+    sma = df["close"].rolling(window=period).mean()
+    std = df["close"].rolling(window=period).std()
 
-def get_bbands(values, period=20, num_std=2):
-    s = pd.Series(values)
-    sma = s.rolling(window=period).mean()
-    std = s.rolling(window=period).std()
+    df["bb_upper"] = sma + num_std * std
+    df["bb_lower"] = sma - num_std * std
+    df["bb_middle"] = sma
 
-    upper = sma + num_std * std
-    lower = sma - num_std * std
+    return df
 
-    return upper.iloc[-1], lower.iloc[-1]
+
+# 볼린저밴드, 이평선 복구진입, 손절 신호
+def is_trend_reversal(price, prev_price, ema_now, ema_prev, bb_upper, bb_lower):
+    return (
+        ema_now < ema_prev
+        or (prev_price > bb_upper and price < bb_upper)
+        or (prev_price < bb_lower and price > bb_lower)
+    )
