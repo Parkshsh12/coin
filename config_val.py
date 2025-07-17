@@ -9,7 +9,8 @@ api_key = os.getenv("API_KEY")
 api_secret = os.getenv("API_SECRET")
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
-
+## test : 모의매매 main : 실전매매
+MODE = "test"
 LEVERAGE = 10
 SYMBOL = "BTCUSDT"
 INTERVAL = "5"

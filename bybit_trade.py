@@ -29,11 +29,8 @@ ema_buffer = deque(maxlen=5)
 # OHLCV 캐시 함수
 def cached_ohlcv(session, symbol, interval, limit=200, ttl=10):
     now = time.time()
-    print(1)
     if ohlcv_cache["data"] is None or now - ohlcv_cache["last_updated"] > ttl:
-        print(11)
         df = util.trading_utils.get_ohlcv(session, symbol, interval, limit)
-        print(111)
         ohlcv_cache["data"] = df
         ohlcv_cache["last_updated"] = now
     return ohlcv_cache["data"]
@@ -155,18 +152,16 @@ async def strategy_loop():
         price = global_price["last_price"]
         if price:
             try:
-                price_buffer.append(price)
-                
-                ema_now = util.trading_utils.get_ema(price_buffer, span=5)
-                ema_buffer.append(ema_now)
-
-                if len(price_buffer) < 20 or len(ema_buffer) < 3:
-                    await asyncio.sleep(1)
-                    continue
-
-                ema_prev = ema_buffer[-2]
-                bb_upper, bb_lower = util.trading_utils.get_bbands(price_buffer)
-                prev_price = price_buffer[-2]
+                df = cached_ohlcv(config_val.session, config_val.SYMBOL, "15", 200)
+                print(df)
+                df = util.trading_utils.get_ema_df(df)
+                df = util.trading_utils.get_bbands_df(df)
+                price = df.iloc[-1]["close"]
+                ema_now = df.iloc[-1]["ema"]
+                ema_prev = df.iloc[-2]["ema"]
+                bb_upper = df.iloc[-1]["bb_upper"]
+                bb_lower = df.iloc[-1]["bb_lower"]
+                prev_price = df.iloc[-2]["close"]
 
                 # 포지션/진입가 업데이트
                 update_position()
@@ -179,16 +174,11 @@ async def strategy_loop():
                     continue
 
                 # 수익률 계산
-                long_pnl, short_pnl = calculate_pnl(price)
+                if config_val.entry_price["long"] > 0 or config_val.entry_price["short"] > 0:
+                    long_pnl, short_pnl = calculate_pnl(price)
 
                 # 추세 반전 조건
-                trend_reversal = (
-                    ema_now < ema_prev
-                    or (prev_price > bb_upper and price < bb_upper)
-                    or (prev_price < bb_lower and price > bb_lower)
-                )
-
-                if trend_reversal:
+                if util.trading_utils.is_trend_reversal(price, prev_price, ema_now, ema_prev, bb_upper, bb_lower):
                     if long_pnl > 5:
                         close_position("long", 1)
                         open_position("Sell", config_val.qty * 3, 2)
@@ -208,6 +198,10 @@ async def strategy_loop():
                     close_position("short", 2)
                     open_position("Buy", config_val.qty, 1)
                     logging.info("💥 숏 손절 + 롱 복구 진입")
+
+                if config_val.MODE == "test":
+                    logging.info(f"📈 테스트 결과 - 롱 포지션: {config_val.position['long']} | 진입가: {config_val.entry_price['long']}")
+                    logging.info(f"📉 테스트 결과 - 숏 포지션: {config_val.position['short']} | 진입가: {config_val.entry_price['short']}")
 
                 # 실시간 로그 출력
                 logging.info(f"📊 Price: {price:.1f} | EMA: {ema_now:.1f} | BB↑: {bb_upper:.1f} ↓: {bb_lower:.1f} | 롱PnL: {long_pnl:.2f}% | 숏PnL: {short_pnl:.2f}%")
